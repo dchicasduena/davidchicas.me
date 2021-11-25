@@ -31,10 +31,15 @@ code{
 .titles{
     text-align: left;
     margin-top: -10px;
-
 }
 
 .centerSQ .contact{
+    margin-top: -10px;
+    overflow: hidden;
+    word-wrap: break-word
+}
+
+.centerSQ .projects{
     margin-top: -10px;
     overflow: hidden;
     word-wrap: break-word
