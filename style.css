@@ -68,11 +68,15 @@ a:hover{
     margin-bottom: 10%;
     width: 50%;
     color:white;
-    text-align: center;
+    text-align: left;
 }
 
 .home{
     width: 3%;
     height: 3%;
     padding: 10px;
+}
+
+.thingName{
+    color: white;
 }
