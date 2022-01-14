@@ -61,3 +61,18 @@ a:hover{
     margin-right: auto;
     width: 50%;
 }
+
+.things{
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    width: 50%;
+    color:white;
+    text-align: center;
+}
+
+.home{
+    width: 3%;
+    height: 3%;
+    padding: 10px;
+}
