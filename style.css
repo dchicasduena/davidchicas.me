@@ -80,3 +80,9 @@ a:hover{
 .thingName{
     color: white;
 }
+
+.backBTN{
+    color: white;
+    padding: 5px;
+    font-size: medium;
+}
