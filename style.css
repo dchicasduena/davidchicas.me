@@ -88,3 +88,9 @@ a:hover{
     font-size: 18pt;
     text-shadow: 4px 4px rgba(0, 0, 0, 0.2);
 }
+
+.playlists{
+    text-align: left;
+    margin-top: -10px;
+    margin-left: 40px;
+}
