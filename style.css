@@ -32,6 +32,22 @@ code{
     overflow-y: hidden;
 }
 
+.centerSQ_projects{
+    background-color: white;
+    margin: auto;
+    margin-top: 6%;
+    margin-bottom: 6%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #efefef;
+    box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.2);
+    padding: 1.6rem 3rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+
 .icons{
     display: flex; 
     justify-content: flex-end;
