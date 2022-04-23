@@ -13,6 +13,10 @@ code{
     text-align: center;
 }
 
+.info { 
+    margin-top: -6%; 
+}
+
 .centerSQ {
     background-color: white;
     margin: auto;
@@ -26,6 +30,12 @@ code{
     padding: 1.6rem 3rem;
     overflow-x: auto;
     overflow-y: hidden;
+}
+
+.icons{
+    display: flex; 
+    justify-content: flex-end;
+    z-index: 10;
 }
 
 .titles{
