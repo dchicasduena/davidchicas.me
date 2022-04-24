@@ -14,13 +14,13 @@ code{
 }
 
 .info { 
-    margin-top: -6%; 
+    margin-top: -4%; 
 }
 
 .centerSQ {
     background-color: white;
     margin: auto;
-    margin-top: 6%;
+    margin-top: 7%;
     margin-bottom: 6%;
     width: 50%;
     display: flex;
@@ -35,7 +35,7 @@ code{
 .centerSQ_projects{
     background-color: white;
     margin: auto;
-    margin-top: 6%;
+    margin-top: 7%;
     margin-bottom: 6%;
     width: 80%;
     display: flex;
@@ -47,6 +47,14 @@ code{
     overflow-y: hidden;
 }
 
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+    font-weight: 500;
+}  
 
 .icons{
     display: flex; 
@@ -86,37 +94,4 @@ a:hover{
     margin-left: auto;
     margin-right: auto;
     width: 50%;
-}
-
-.things{
-    margin: auto;
-    margin-top: 5%;
-    margin-bottom: 10%;
-    width: 50%;
-    color:white;
-    text-align: left;
-    text-shadow: 4px 4px rgba(0, 0, 0, 0.2);
-}
-
-.home{
-    width: 3%;
-    height: 3%;
-    padding: 10px;
-}
-
-.thingName{
-    color: white;
-}
-
-.backBTN{
-    color: white;
-    padding: 5px;
-    font-size: 18pt;
-    text-shadow: 4px 4px rgba(0, 0, 0, 0.2);
-}
-
-.playlists{
-    text-align: left;
-    margin-top: -10px;
-    margin-left: 40px;
 }
