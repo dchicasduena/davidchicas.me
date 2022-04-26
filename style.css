@@ -32,19 +32,8 @@ code{
     overflow-y: hidden;
 }
 
-.centerSQ_projects{
-    background-color: white;
-    margin: auto;
-    margin-top: 7%;
-    margin-bottom: 6%;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #efefef;
-    box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.2);
-    padding: 1.6rem 3rem;
-    overflow-x: auto;
-    overflow-y: hidden;
+.projectSQ{
+    width: 65%;
 }
 
 .flex-container {
@@ -125,7 +114,7 @@ a:hover{
   }
   
 .container:hover .image {
-    opacity: 0.3;
+    opacity: 0.1;
     background-color:rgba(0,0,0,0.4);
 }
   
@@ -150,6 +139,10 @@ a:hover{
 .second {
     flex-grow: 1;
     margin-left: 2%;
+}
+
+.desc {
+    font-weight: bold;
 }
 
 @media only screen and (max-width: 600px) {
