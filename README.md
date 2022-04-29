@@ -1,2 +1,2 @@
 # davidchicas.me
-personal site which has some info about me
+portfolio site with some info about me, my projects and contact info 
