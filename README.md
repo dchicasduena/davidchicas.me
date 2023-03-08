@@ -1,4 +1,4 @@
 # [davidchicas.me](https://davidchicas.me/) 
 portfolio site with some info about me, my projects and contact information
  
-to do: 
+v2 revamp to do: 
