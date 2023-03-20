@@ -27,10 +27,10 @@
 
             <ul class="list-unstyled components">
                 <li>
-                    <a class="sideButton" href="#home"> home </a>
-                    <a class="sideButton" href="#about"> about </a>
-                    <a class="sideButton" href="#projects"> projects </a>
-                    <a class="sideButton" href="#contact"> contact </a>
+                    <a id="sideButton" class="sideButton" href="#home"> home </a>
+                    <a id="sideButton" class="sideButton" href="#about"> about </a>
+                    <a id="sideButton" class="sideButton" href="#projects"> projects </a>
+                    <a id="sideButton" class="sideButton" href="#contact"> contact </a>
                 </li>
             </ul>
         </nav>
@@ -83,6 +83,10 @@
                 $('#content').toggleClass('active');
             });
             $('#sidebarCollapse2').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $('#content').toggleClass('active');
+            });
+            $('#sideButton').on('click', function () {
                 $('#sidebar').toggleClass('active');
                 $('#content').toggleClass('active');
             });
