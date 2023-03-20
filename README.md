@@ -5,3 +5,4 @@ v2 revamp to do:
 - change colors
 - new style
 - better projects page
+- better mobile response
