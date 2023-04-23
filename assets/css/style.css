@@ -45,7 +45,7 @@ h4,
 h5,
 h6,
 .font-heading {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .section {
@@ -123,16 +123,15 @@ h6,
 
 .item .item-wrap>.work-info {
   position: absolute;
-  top: 50%;
   width: 100%;
-  text-align: center;
+  text-align: left;
   z-index: 3;
-  transform: translateY(-50%);
-  color: #000000;
-  opacity: 0;
-  visibility: hidden;
-  margin-top: 20px;
+  color: #ffffff;
+  margin-top: 5px;
   transition: 0.3s all ease;
+  padding: 1rem;
+  font-family: 'Poppins', sans-serif;
+
 }
 
 .item .item-wrap>.work-info h3 {
@@ -389,7 +388,10 @@ h6,
 # Footer
 --------------------------------------------------------------*/
 .footer {
-  padding: 0 0 4rem 0;
+  padding: 0 0 1rem 0;
+  justify-content: center;
+  text-align: right;
+  padding: 1rem;
 }
 
 .footer a {
@@ -444,4 +446,24 @@ i:hover {
     40%, 60% {
       transform: translate3d(2px, 0, 0);
   }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+#desc {
+  font-family: "Inconsolata", monospace;
+}
+
+mark{
+  background-color: #000;
+  color: #fff;
 }
