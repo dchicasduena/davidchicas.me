@@ -6,3 +6,7 @@ v2 revamp to do:
 - new style
 - better projects page
 - better mobile response
+
+credits:
+template: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
+darkmode: https://codepen.io/Umer_Farooq/pen/eYJgKGN

@@ -24,7 +24,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link id='style' href="assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: MyPortfolio
@@ -52,6 +52,16 @@
         <div class="col-md-6 d-none d-md-block  mr-auto">
         </div>
       </div>
+      <!--
+      <div id='modetoggle' class="modetoggle">
+        <input onclick="myFunction()" type="checkbox" class="checkbox" id="checkbox">
+        <label for="checkbox" class="checkbox-label">
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun"></i>
+          <span class="ball"></span>
+        </label>
+      </div>
+       -->
     </div>
   </div>
 
@@ -59,7 +69,9 @@
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <h1>hey, i'm <b>david chicas</b></h1>
-        <p > <span style="color: #7386D5"> computer</span> science &amp;
+        <p class='desktop'> <span style="color: #7386D5"> computer</span> science &amp;
+          web <span style="color: #7386D5"> design</span></p>
+        <p class='mobile'> <span style="color: #7386D5"> computer</span> science &amp; <br>
           web <span style="color: #7386D5"> design</span></p>
       </a>
       <div class="icons">
@@ -123,7 +135,7 @@
               <img class="img-fluid" src="assets/img/genrify.jpg">
             </a>
           </div>
-          <!--  
+          <!--
           <div class="item branding col-sm-6 col-md-4 col-lg-4 mb-4" style="position: absolute; left: 760px; top: 0px;">
             <a href="pages/work-single.html" class="item-wrap fancybox">
               <div class="work-info">
@@ -177,7 +189,7 @@
       <div class="container">
             <h2><b> contact info </b></h2>
             <h3 class="mb-0">
-              discord as <span style="color: #7386D5"> <b>dech89#9711</b> </span> <br>
+              discord as <span id="cont" onclick="copyDivToClipboard()" style="color: #7386D5"> <b>dech89#9711</b> </span> <br>
               github as <span style="color: #7386D5"> <a class='none' href="https://github.com/dchicasduena" target="_blank" rel="noopener noreferrer"> <b>dchicasduena</b> </a></span> <br>
               email me at <span style="color: #7386D5"> <b>davidchicas614</b> at <b>gmail.com</b></span><br></h3>
           </div>
@@ -206,6 +218,12 @@
       $(this).find('i').toggleClass('fa-solid fa-x');
     });
   </script>
+<script type="text/javascript">
+function myFunction() {
+  var element = document.body;
+  element.classList.toggle("dark-mode");
+}
+</script>
 
 </body>
 </html>
