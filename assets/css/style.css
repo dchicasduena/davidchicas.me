@@ -201,6 +201,11 @@ h6,
   padding-left: 1rem;
 }
 
+.logo {
+  width:15rem;
+  padding-bottom: 0.3rem;
+}
+
 .readmore {
   display: inline-block;
   border: 1px solid #000;
@@ -423,6 +428,7 @@ h6,
 .icons {
   position: relative;
   color: #7386D5;
+
 }
 
 i:hover {
@@ -469,6 +475,10 @@ mark{
 
 span:hover {
   cursor: pointer;
+}
+
+.descspan:hover{
+  cursor: auto;
 }
 
 p.mobile { display: none }
@@ -526,3 +536,4 @@ ul {
 .modetoggle {
   float: right;
 }
+
