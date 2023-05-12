@@ -38,6 +38,8 @@ a.none {
   color: inherit;
 }
 
+img.hide { display: none }
+
 h1,
 h2,
 h3,
@@ -487,6 +489,9 @@ p.mobile { display: none }
 @media (max-width: 780px) {
     p.mobile { display: block }
     p.desktop { display: none }
+    video.hide { display: none }
+    img.hide { display: block;
+    padding-bottom: 1rem;}
 }
 
 .pdesc {
