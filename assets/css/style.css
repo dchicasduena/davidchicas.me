@@ -395,7 +395,8 @@ h6,
   padding: 0 0 1rem 0;
   justify-content: center;
   text-align: right;
-  padding: 1rem;
+  padding: 0.5rem;
+  padding-right: 1rem;
 }
 
 .footer a {
