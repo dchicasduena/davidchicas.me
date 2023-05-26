@@ -481,7 +481,7 @@ span:hover {
 }
 
 .descspan:hover{
-  cursor: auto;
+  cursor: pointer;
 }
 
 p.mobile { display: none }
