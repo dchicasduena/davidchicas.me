@@ -3,7 +3,6 @@ portfolio site with some info about me, my projects and contact information
  
  to do: 
 - add more projects
-- update contact information
 - better seo
 
  credits: 
