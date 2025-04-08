@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/davidchicas.me/static/css/main.9f73a5d1.css",
+    "main.js": "/davidchicas.me/static/js/main.add778d7.js",
+    "static/js/453.bef31228.chunk.js": "/davidchicas.me/static/js/453.bef31228.chunk.js",
+    "static/media/dclogo2.gif": "/davidchicas.me/static/media/dclogo2.2e1b4e9dac4ed6f29737.gif",
+    "static/media/cardbinder2.png": "/davidchicas.me/static/media/cardbinder2.1e7337fb9fba8a6fc3f5.png",
+    "static/media/dc animated.webm": "/davidchicas.me/static/media/dc animated.0299e954414719908fc7.webm",
+    "static/media/cardbinder.jpg": "/davidchicas.me/static/media/cardbinder.5baf3f71d8cc8e9a6633.jpg",
+    "static/media/sandwich-repo.jpg": "/davidchicas.me/static/media/sandwich-repo.2b4db6eda9cba528f6f5.jpg",
+    "static/media/genrify.jpg": "/davidchicas.me/static/media/genrify.a2b01a9a7f0bdc418542.jpg",
+    "static/media/dclogo.jpg": "/davidchicas.me/static/media/dclogo.f8ca90d44c172d5a8425.jpg",
+    "static/media/genrify2.png": "/davidchicas.me/static/media/genrify2.03f923d4aadcfec339a6.png",
+    "static/media/tfmm.jpg": "/davidchicas.me/static/media/tfmm.904355d06af7bed6a2ea.jpg",
+    "static/media/tfmm2.jpg": "/davidchicas.me/static/media/tfmm2.2b94b70865a9b6621a3e.jpg",
+    "static/media/automata.jpeg": "/davidchicas.me/static/media/automata.ef28a5a9ff0e425d7094.jpeg",
+    "static/media/logo normal.svg": "/davidchicas.me/static/media/logo normal.32dae6304feab0e890c9f72d015046a7.svg",
+    "index.html": "/davidchicas.me/index.html",
+    "main.9f73a5d1.css.map": "/davidchicas.me/static/css/main.9f73a5d1.css.map",
+    "main.add778d7.js.map": "/davidchicas.me/static/js/main.add778d7.js.map",
+    "453.bef31228.chunk.js.map": "/davidchicas.me/static/js/453.bef31228.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9f73a5d1.css",
+    "static/js/main.add778d7.js"
+  ]
+}
