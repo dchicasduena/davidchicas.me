@@ -6,5 +6,9 @@ portfolio site with some info about me, my projects and contact information
 - better seo
 - fix indexing issues
 
+build app:
+npm run build
+npm run deploy
+
  credits: 
 - template: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/

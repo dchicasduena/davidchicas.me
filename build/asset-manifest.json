@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.9f73a5d1.css",
-    "main.js": "/static/js/main.bf7379d2.js",
-    "static/js/453.bef31228.chunk.js": "/static/js/453.bef31228.chunk.js",
+    "main.css": "/static/css/main.92e32fd1.css",
+    "main.js": "/static/js/main.f59c232b.js",
+    "static/js/488.e78ef43b.chunk.js": "/static/js/488.e78ef43b.chunk.js",
     "static/media/dclogo2.gif": "/static/media/dclogo2.2e1b4e9dac4ed6f29737.gif",
     "static/media/cardbinder2.png": "/static/media/cardbinder2.1e7337fb9fba8a6fc3f5.png",
     "static/media/dc animated.webm": "/static/media/dc animated.0299e954414719908fc7.webm",
@@ -16,12 +16,12 @@
     "static/media/automata.jpeg": "/static/media/automata.ef28a5a9ff0e425d7094.jpeg",
     "static/media/logo normal.svg": "/static/media/logo normal.32dae6304feab0e890c9f72d015046a7.svg",
     "index.html": "/index.html",
-    "main.9f73a5d1.css.map": "/static/css/main.9f73a5d1.css.map",
-    "main.bf7379d2.js.map": "/static/js/main.bf7379d2.js.map",
-    "453.bef31228.chunk.js.map": "/static/js/453.bef31228.chunk.js.map"
+    "main.92e32fd1.css.map": "/static/css/main.92e32fd1.css.map",
+    "main.f59c232b.js.map": "/static/js/main.f59c232b.js.map",
+    "488.e78ef43b.chunk.js.map": "/static/js/488.e78ef43b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9f73a5d1.css",
-    "static/js/main.bf7379d2.js"
+    "static/css/main.92e32fd1.css",
+    "static/js/main.f59c232b.js"
   ]
 }
