@@ -9,8 +9,8 @@ const DCLogo = () => {
             <div className="container">
               <div className="row mb-4 align-items-center">
                 <div className="col-md-6 aos-init aos-animate" data-aos="fade-up">
-                  <h2><b>website logo</b></h2>
-                  <h3 id="desc" className="mb-0">
+                  <h2><b>Website Logo</b></h2>
+                  <h3 className="mb-4 desc">
                     designed the logo for this website, created in Illustrator and animated in After Effects
                   </h3>
                   <br />

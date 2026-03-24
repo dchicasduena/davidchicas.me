@@ -12,7 +12,7 @@ const Genrify = () => {
               {/* Title and Description */}
               <div className="col-md-12 aos-init aos-animate" data-aos="fade-up">
                 <h2><b>Genrify</b></h2>
-                <h3 className="mb-0 desc">Spotify playlist generator based on genres and sub-genres</h3>
+                <h3 className="mb-4 desc">Spotify playlist generator based on genres and sub-genres</h3>
               </div>
             </div>
           </div>
@@ -32,20 +32,18 @@ const Genrify = () => {
                 <div className="col-md-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                   <div className="sticky-content desc" style={{ fontSize: '22px' }}>
                     <div>
-                      <p>
+                      <h3 className="mb-4 desc">
                         Used the Spotify API to create playlists and add songs. The application was built in Node.js and uses MongoDB to connect with all the songs.
                         The application follows an MVC structure.
-                      </p>
+                      </h3>
                     </div>
 
-                    <h5 >Things Used</h5>
-                    <ul className="list-unstyled list-line mb-5">
-                      <li>Spotify API</li>
-                      <li>Node.js</li>
-                      <li>MongoDB</li>
-                      <li>Bootstrap</li>
-                    </ul>
-
+                    <h3 className="mb-4 desc fw-bold">Things Used</h3>
+                    <h3 className="mb-4 desc">- Spotify API</h3>
+                    <h3 className="mb-4 desc">- Node.js</h3>
+                    <h3 className="mb-4 desc">- MongoDB</h3>
+                    <h3 className="mb-4 desc">- Bootstrap</h3>
+                    
                     <p>
                       <a
                         href="https://github.com/dchicasduena/genrify"

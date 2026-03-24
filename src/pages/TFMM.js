@@ -12,7 +12,7 @@ const TFMMM = () => {
               {/* Title and Description */}
               <div className="col-md-12 aos-init aos-animate" data-aos="fade-up">
                 <h2><b>Thirty Five mm</b></h2>
-                <h3 className="mb-0 desc">a portfolio of pictures i've taken, mostly in 35mm film</h3>
+                <h3 className="mb-4 desc">a portfolio of pictures i've taken, mostly in 35mm film</h3>
               </div>
             </div>
           </div>
@@ -32,19 +32,17 @@ const TFMMM = () => {
                 <div className="col-md-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                   <div className="sticky-content desc" style={{ fontSize: '22px' }}>
                     <div>
-                      <p>
+                      <h3 className="mb-4 desc">
                         For this website I used Bootstrap to keep responsive, so it works on mobile too. 
                         I use this place to show some pictures I have taken but most importantly to practice making websites.
-                      </p>
+                      </h3>
                     </div>
 
-                    <h5 >Things Used</h5>
-                    <ul className="list-unstyled list-line mb-5">
-                        <li>Bootstrap</li>
-                        <li>HTML5/CSS3</li>
-                        <li>Github pages</li>
-                        <li>35mm camera</li>
-                    </ul>
+                    <h3 className="mb-4 desc fw-bold">Things Used</h3>
+                    <h3 className="mb-4 desc">- Bootstrap</h3>
+                    <h3 className="mb-4 desc">- HTML5/CSS3</h3>
+                    <h3 className="mb-4 desc">- Github pages</h3>
+                    <h3 className="mb-4 desc">- 35mm camera</h3>
 
                     <p>
                       <a

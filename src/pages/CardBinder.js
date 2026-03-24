@@ -12,7 +12,7 @@ const CardBinder = () => {
               {/* Title and Description */}
               <div className="col-md-12 aos-init aos-animate" data-aos="fade-up">
                 <h2><b>Card Binder</b></h2>
-                <h3 className="mb-0 desc">Visualize your Pokémon TCG binder</h3>
+                <h3 className="mb-4 desc">Visualize your Pokémon TCG binder</h3>
               </div>
             </div>
           </div>
@@ -32,16 +32,14 @@ const CardBinder = () => {
                 <div className="col-md-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
                   <div className="sticky-content desc" style={{ fontSize: '22px' }}>
                     <div>
-                      <p>
+                      <h3 className="mb-4 desc">
                       Plan your PTCG binder, this web app allows you to add cards to your binder and download an image. You can search for cards by name or set. The app uses the Pokémon TCG API to fetch card data.
-                      </p>
+                      </h3>
                     </div>
 
-                    <h5 >Things Used</h5>
-                    <ul className="list-unstyled list-line mb-5">
-                      <li>Pokémon TCG API</li>
-                      <li>React</li>
-                    </ul>
+                    <h3 className="mb-4 desc fw-bold">Things Used</h3>
+                    <h3 className="mb-4 desc">- Pokémon TCG API</h3>
+                    <h3 className="mb-4 desc">- React</h3>
 
                     <p>
                       <a
