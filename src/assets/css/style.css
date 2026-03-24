@@ -421,6 +421,10 @@ h6,
 
 }
 
+.icons i {
+  transition: all 0.3s ease;
+}
+
 i:hover {
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
@@ -530,11 +534,29 @@ ul {
 }
 
 .custom-navmenu {
+  display: block !important;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease-in-out;
+  transition: max-height 0.35s ease-in-out;
 }
 
 .custom-navmenu.show {
-  max-height: 500px;
+  max-height: 240px;
+}
+
+.burger {
+  transition: transform 0.3s ease-in-out;
+}
+
+.burger.active {
+  transform: translateX(4px) rotate(0deg);
+}
+
+.burger i {
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.burger.active i {
+  transform: translateX(4px);
+  color: #000;
 }

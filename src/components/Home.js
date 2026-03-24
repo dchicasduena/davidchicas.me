@@ -1,9 +1,12 @@
+import React, { useState } from 'react';
 import logoNormal from '../assets/img/logos/logo normal.svg'; 
 import animatedLogo from '../assets/img/logos/animated/dc animated.webm';
 import { useLocation } from 'react-router-dom';
 
 
 const Home = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const handleMouseOver = (e) => {
     e.target.play();
   };
@@ -75,15 +78,16 @@ const Home = () => {
               <a
                 href="#"
                 id="burger"
-                className="burger"
+                className={`burger ${menuOpen ? 'active' : ''}`}
                 onClick={(e) => {
                   e.preventDefault();
+                  setMenuOpen(!menuOpen);
                   const nav = document.getElementById('main-navbar');
                   nav.classList.toggle('show');
                 }}
               >
                 <i
-                  className="fa-solid fa-bars fa-xl fa-fw"
+                  className={`fa-solid ${menuOpen ? 'fa-xmark' : 'fa-bars'} fa-xl fa-fw`}
                   style={{ color: 'black', paddingLeft: '1rem' }}
                 ></i>
               </a>
