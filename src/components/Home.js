@@ -1,101 +1,63 @@
-import React, { useState } from 'react';
-import logoNormal from '../assets/img/logos/logo normal.svg'; 
-import animatedLogo from '../assets/img/logos/animated/dc animated.webm';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import logoNormal from '../assets/img/logos/logo normal.svg';
 
+const Home = () => (
+  <>
+    <header className="masthead" id="home">
+      <div className="masthead-top">
+        <Link className="brand-link" to="/" aria-label="David Chicas, home">
+          <img src={logoNormal} className="masthead-logo" alt="David Chicas logo" />
+        </Link>
 
-const Home = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const handleMouseOver = (e) => {
-    e.target.play();
-  };
-
-  const handleMouseOut = (e) => {
-    e.target.pause();
-    e.target.currentTime = 0; 
-  };
-
-  const location = useLocation();
-  const isNotHomePage = location.pathname !== '/';
-
-  return (
-    <nav id="home" className="navbar navbar-light custom-navbar">
-      <div className="container">
-        <a className="navbar-brand" href="/">
-          <div className="logo">
-            {/* Animated Logo Video */}
-            <video
-              className="logo hide"
-              muted
-              data-was-processed="true"
-              onMouseOver={handleMouseOver}
-            >
-            <source type="video/webm" src={animatedLogo} />
-            </video>
-
-            {/* Static Logo Image */}
-            <img
-              src={logoNormal}
-              className="logo hide"
-              id="logo"
-              alt="Logo"
-            />
-          </div>
-        </a>
-
-        <div className="icons">
+        <div className="social-links" aria-label="External links">
           <a
-            style={{ color: '#7386D5' }}
+            aria-label="LinkedIn"
             href="https://ca.linkedin.com/in/davidchicas"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fa-brands fa-linkedin fa-xl fa-fw"></i>
+            <i className="fa-brands fa-linkedin" aria-hidden="true"></i>
           </a>
           <a
-            style={{ color: '#7386D5' }}
+            aria-label="GitHub"
             href="https://github.com/dchicasduena"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fa-brands fa-github fa-xl fa-fw"></i>
+            <i className="fa-brands fa-github" aria-hidden="true"></i>
           </a>
           <a
-            style={{ color: '#7386D5' }}
+            aria-label="Resume"
             href="https://davidchicas.me/assets/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fa-solid fa-file fa-xl fa-fw"></i>
+            <i className="fa-solid fa-file-lines" aria-hidden="true"></i>
           </a>
-          <a style={{ color: '#7386D5' }} className="icon-cont" href="mailto:contact@davidchicas.me">
-            <i className="fa-solid fa-envelope fa-xl fa-fw"></i>
+          <a aria-label="Email" href="mailto:contact@davidchicas.me">
+            <i className="fa-solid fa-envelope" aria-hidden="true"></i>
           </a>
-            {isNotHomePage ? (
-              <a href="/"><i className="fa-solid fa-arrow-left fa-xl fa-fw" style={{ color: 'black', paddingLeft: '1rem' }}></i></a>
-            ) : (
-              <a
-                href="#"
-                id="burger"
-                className={`burger ${menuOpen ? 'active' : ''}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setMenuOpen(!menuOpen);
-                  const nav = document.getElementById('main-navbar');
-                  nav.classList.toggle('show');
-                }}
-              >
-                <i
-                  className={`fa-solid ${menuOpen ? 'fa-xmark' : 'fa-bars'} fa-xl fa-fw`}
-                  style={{ color: 'black', paddingLeft: '1rem' }}
-                ></i>
-              </a>
-            )}
         </div>
       </div>
-    </nav>
-  );
-};
+
+      <nav className="section-nav" aria-label="Page sections">
+        <a href="#about">ABOUT</a>
+        <a href="#projects">PROJECTS</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
+    </header>
+
+    <section className="introduction" aria-labelledby="page-title">
+      <p className="eyebrow">A SMALL CORNER OF THE INTERNET</p>
+      <h1 id="page-title">DAVID CHICAS</h1>
+      <p>You are standing in a quiet place on the web.</p>
+      <p className="intro-detail">
+        A software developer in St. John's, Newfoundland. There are projects here,
+        and a way to get in touch.
+      </p>
+    </section>
+  </>
+);
 
 export default Home;

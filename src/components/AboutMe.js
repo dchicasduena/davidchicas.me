@@ -2,15 +2,18 @@ import React from 'react';
 
 const AboutMe = () => {
   return (
-    <section id="about" className="section">
-      <div className="container">
-        <h2><b>about me</b></h2>
-        <h3 id='desc' className="mb-0">
-          I am a <span className="descspan" style={{ color: '#7386D5' }}>software developer </span> 
-          located in St. John's, Newfoundland. I have experience using: React, Node.js, Express, HTML/CSS, JavaScript, Python, C, C++, Git, MongoDB, SQL, Pandas, and Plotly.
-          I am interested in web development, both frontend and backend, as well as multimedia programming and user interface design.
-        </h3>
-      </div>
+    <section id="about" className="text-section">
+      <h2 className="section-title"><span>01</span> ABOUT</h2>
+      <p>
+        I build for the web, from the interface down to the database. I am interested
+        in frontend and backend development, multimedia programming, and user
+        interface design.
+      </p>
+      <p className="detail-line">
+        <span className="detail-label">KNOWN LANGUAGES &amp; TOOLS</span>
+        React, Node.js, Express, HTML/CSS, JavaScript, Python, C, C++, Git,
+        MongoDB, SQL, Pandas, Plotly.
+      </p>
     </section>
   );
 };
