@@ -9,7 +9,6 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "bootstrap": "^5.3.8",
-    "chicago.css": "^1.0.3",
     "gh-pages": "^6.3.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",

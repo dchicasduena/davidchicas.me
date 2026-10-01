@@ -46,7 +46,7 @@ const projects = [
 
 const Projects = () => (
   <section id="projects" className="text-section">
-    <h2 className="section-title">PROJECTS</h2>
+    <h2 className="section-title">Projects</h2>
     <div className="project-list">
       {projects.map((project, index) => (
         <article className="project-entry" id={`project-${project.id}`} key={project.id}>

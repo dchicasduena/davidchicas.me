@@ -13,10 +13,10 @@ test('renders the text-first portfolio and section links', () => {
   render(<App />);
 
   expect(screen.getByRole('heading', { name: /david chicas/i })).toBeInTheDocument();
-  expect(screen.getByRole('link', { name: 'PROJECTS' })).toHaveAttribute('href', '#projects');
-  expect(screen.getByRole('heading', { name: 'ABOUT' })).toBeInTheDocument();
-  expect(screen.getByRole('heading', { name: 'PROJECTS' })).toBeInTheDocument();
-  expect(screen.getByRole('heading', { name: 'CONTACT' })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /projects/i })).toHaveAttribute('href', '#projects');
+  expect(screen.getByRole('heading', { name: /about/i })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: /projects/i })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: /contact/i })).toBeInTheDocument();
   expect(screen.getByText('01.', { selector: '.project-number' })).toBeInTheDocument();
 });
 

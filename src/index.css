@@ -3,14 +3,10 @@
   --night: #02020a;
   --text: #fcfcfa;
   --amber: #f3cd5e;
-}
-
-@font-face {
-  font-family: 'Chicago';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('../node_modules/chicago.css/ChicagoFLF.woff') format('woff');
+  --font-heading: 23px;
+  --font-heading-minus-two: 21px;
+  --font-copy: 20px;
+  --font-link: 17px;
 }
 
 * {
@@ -32,8 +28,8 @@ body {
   margin: 0;
   background: var(--night);
   color: var(--text);
-  font-family: 'Chicago', Monaco, 'Lucida Console', 'Courier New', sans-serif;
-  font-size: 20px;
+  font-family: 'Inconsolata', Consolas, Monaco, 'Courier New', monospace;
+  font-size: var(--font-copy);
   line-height: 1.65;
   text-shadow: 0 0 5px rgba(252, 252, 250, 0.14);
   -webkit-font-smoothing: antialiased;
@@ -61,6 +57,7 @@ body::before {
 a {
   color: var(--text);
   cursor: url('./assets/cursors/Alternate Select Light.cur'), pointer;
+  font-size: var(--font-link);
   text-decoration: none;
   text-underline-offset: 0.2em;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import './App.css';
 
@@ -46,7 +46,19 @@ const Portfolio = () => {
     };
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    const history = window.history;
+    if (!('scrollRestoration' in history)) return undefined;
+
+    const previousScrollRestoration = history.scrollRestoration;
+    history.scrollRestoration = 'manual';
+
+    return () => {
+      history.scrollRestoration = previousScrollRestoration;
+    };
+  }, []);
+
+  useLayoutEffect(() => {
     const normalizedPath = pathname.replace(/\/+$/, '').toLowerCase();
     const targetId = legacyProjectRoutes[normalizedPath];
 

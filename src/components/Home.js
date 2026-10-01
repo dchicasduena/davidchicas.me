@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const ART_PATH = `${process.env.PUBLIC_URL}/assets/ascii-art/david-chicas.txt`;
 const MOBILE_ART_PATH = `${process.env.PUBLIC_URL}/assets/ascii-art/david-chicas-mobile.txt`;
@@ -10,6 +10,8 @@ const Home = () => {
   const [artIndex, setArtIndex] = useState(0);
   const [visibleColumns, setVisibleColumns] = useState(0);
   const [animationPhase, setAnimationPhase] = useState('typing');
+  const [artFontSizes, setArtFontSizes] = useState([8]);
+  const titleRef = useRef(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -26,8 +28,12 @@ const Home = () => {
         if (cancelled) return;
 
         const frames = contents
-          ?.split(/\r?\n+%%ART%%\r?\n+/)
-          .map((frame) => frame.replace(/^\r?\n|\r?\n$/g, ''))
+          ?.split(/\r?\n+[\t ]*%%ART%%[\t ]*\r?\n+/)
+          .map((frame) => frame
+            .replace(/^\r?\n|\r?\n$/g, '')
+            .split(/\r?\n/)
+            .map((line) => line.trimEnd())
+            .join('\n'))
           .filter(Boolean) || [];
 
         if (frames.length > 0) {
@@ -45,6 +51,41 @@ const Home = () => {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    const title = titleRef.current;
+    if (!title) return undefined;
+
+    const updateSizing = () => {
+      const availableWidth = title.clientWidth || 820;
+      const availableHeight = (title.clientHeight || 140) - 4;
+      const fontSizes = artFrames.map((frame) => {
+        const lines = frame.split('\n');
+        const widestLine = Math.max(...lines.map((line) => line.length));
+        const widthFit = availableWidth / (widestLine * 0.7);
+        const heightFit = availableHeight / (lines.length * 1.08);
+        return Math.min(8, widthFit, heightFit);
+      });
+
+      setArtFontSizes((current) => {
+        if (current.length === fontSizes.length &&
+          current.every((size, index) => size === fontSizes[index])) return current;
+
+        return fontSizes;
+      });
+    };
+
+    updateSizing();
+
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', updateSizing);
+      return () => window.removeEventListener('resize', updateSizing);
+    }
+
+    const observer = new ResizeObserver(updateSizing);
+    observer.observe(title);
+    return () => observer.disconnect();
+  }, [artFrames]);
 
   useEffect(() => {
     const frame = artFrames[artIndex] || '';
@@ -85,9 +126,9 @@ const Home = () => {
       <header className="masthead" id="home">
         <nav className="section-nav" aria-label="Page sections">
           <div className="section-links">
-            <a href="#about">ABOUT</a>
-            <a href="#projects">PROJECTS</a>
-            <a href="#contact">CONTACT</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
           </div>
 
           <div className="social-links" aria-label="External links">
@@ -117,17 +158,24 @@ const Home = () => {
       </header>
 
       <section className="introduction" aria-labelledby="page-title">
-        <div id="page-title" className="introduction-title" role="heading" aria-level="1" aria-label="David Chicas">
+        <div
+          id="page-title"
+          ref={titleRef}
+          className="introduction-title"
+          role="heading"
+          aria-level="1"
+          aria-label="David Chicas"
+        >
           <pre className="ascii-title" aria-hidden="true">
-            {visibleArt}
+            <span style={{ fontSize: `${artFontSizes[artIndex] || 8}px` }}>{visibleArt}</span>
           </pre>
           <pre className="ascii-title ascii-title-mobile" aria-hidden="true">
             {mobileArt}
           </pre>
         </div>
         <p className="intro-detail">
-          {'>'} A software developer in St. John's, Newfoundland. Here are some of my projects, info about me,
-          and a way to get in touch
+          {'>'} A software developer in St. John's, Newfoundland. Here are some of my projects, some information about me,
+          and a way to get in touch 
         </p>
       </section>
     </>
