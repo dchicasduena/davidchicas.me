@@ -3,9 +3,9 @@ import React from 'react';
 const AboutMe = () => {
   return (
     <section id="about" className="text-section">
-      <h2 className="section-title"><span>01</span> ABOUT</h2>
+      <h2 className="section-title">ABOUT</h2>
       <p>
-        I build for the web, from the interface down to the database. I am interested
+        {'>'} Currently working for Strong Data Automation. I am interested
         in frontend and backend development, multimedia programming, and user
         interface design.
       </p>

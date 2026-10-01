@@ -1,8 +1,8 @@
 :root {
   color-scheme: dark;
-  --night: #00000f;
-  --text: #fffff0;
-  --amber: #e8c47a;
+  --night: #02020a;
+  --text: #fcfcfa;
+  --amber: #f3cd5e;
 }
 
 @font-face {
@@ -29,6 +29,7 @@ body {
   font-family: 'Chicago', Monaco, 'Lucida Console', 'Courier New', sans-serif;
   font-size: 20px;
   line-height: 1.65;
+  text-shadow: 0 0 5px rgba(252, 252, 250, 0.14);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -36,12 +37,24 @@ body::before {
   position: fixed;
   z-index: 0;
   inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 3px,
-    rgba(0, 0, 0, 0) 4px
-  );
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 2px,
+      rgba(252, 252, 250, 0.2) 3px
+    );
+  opacity: 0.22;
+  content: '';
+  pointer-events: none;
+}
+
+body::after {
+  position: fixed;
+  z-index: 0;
+  inset: -4%;
+  background: radial-gradient(ellipse at center, transparent 56%, rgba(0, 0, 0, 0.48) 100%);
   content: '';
   pointer-events: none;
 }
@@ -55,7 +68,8 @@ a {
 a:hover,
 a:focus-visible {
   color: var(--amber);
-  text-decoration: underline;
+  text-shadow: 0 0 8px rgba(243, 205, 94, 0.5);
+  text-decoration: none;
 }
 
 ::selection {
@@ -66,5 +80,9 @@ a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .introduction h1::after {
+    animation: none;
   }
 }

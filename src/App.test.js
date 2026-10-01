@@ -12,11 +12,12 @@ import App from './App';
 test('renders the text-first portfolio and section links', () => {
   render(<App />);
 
-  expect(screen.getByRole('heading', { name: 'DAVID CHICAS' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: /david chicas/i })).toBeInTheDocument();
   expect(screen.getByRole('link', { name: 'PROJECTS' })).toHaveAttribute('href', '#projects');
-  expect(screen.getByRole('heading', { name: '01 ABOUT' })).toBeInTheDocument();
-  expect(screen.getByRole('heading', { name: '02 PROJECTS' })).toBeInTheDocument();
-  expect(screen.getByRole('heading', { name: '03 CONTACT' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'ABOUT' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'PROJECTS' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'CONTACT' })).toBeInTheDocument();
+  expect(screen.getByText('01.', { selector: '.project-number' })).toBeInTheDocument();
 });
 
 test('keeps legacy project URLs and shows their project entry', () => {
