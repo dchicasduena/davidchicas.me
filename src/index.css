@@ -20,7 +20,12 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 1.5rem;
+  scrollbar-width: none;
   cursor: url('./assets/cursors/Normal Select Light.cur'), auto;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {

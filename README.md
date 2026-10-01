@@ -13,3 +13,5 @@ npm run deploy
  credits: 
 - template: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
 - cursors: https://jeelh.itch.io/retro-cursor
+- ascii art: https://patorjk.com/software/taag
+- Dust texture: https://www.toptal.com/designers/subtlepatterns/dust/
