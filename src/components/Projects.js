@@ -1,11 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const projects = [
   {
     id: 'tfmm',
     name: 'Thirty Five mm',
-    path: '/tfmm',
     description: 'A portfolio of photographs, mostly shot on 35mm film, and a place to practice building for the web.',
     details: 'Bootstrap, HTML, CSS, GitHub Pages, 35mm photography',
     links: [{ label: 'VISIT THE SITE', href: 'https://dchicasduena.github.io/thirty-five-mm/' }],
@@ -13,7 +11,6 @@ const projects = [
   {
     id: 'genrify',
     name: 'Genrify',
-    path: '/genrify',
     description: 'A Spotify playlist generator that builds playlists from music genres and sub-genres.',
     details: 'Spotify API, Node.js, MongoDB, Bootstrap, MVC architecture',
     links: [
@@ -38,7 +35,6 @@ const projects = [
   {
     id: 'cardbinder',
     name: 'Card Binder',
-    path: '/cardBinder',
     description: 'This has been deprecated as the API is no longer available. Arrange a Pokémon TCG binder, search cards by name or set, then download an image of the finished page.',
     details: 'React, Pokémon TCG API',
     links: [
@@ -56,7 +52,7 @@ const Projects = () => (
         <article className="project-entry" id={`project-${project.id}`} key={project.id}>
           <h3>
             <span className="project-number">{String(index + 1).padStart(2, '0')}.</span>{' '}
-            {project.path ? <Link to={project.path}>{project.name}</Link> : project.name}
+            {project.name}
           </h3>
           <p>{'>'} {project.description}</p>
           <p className="project-details"><span className="detail-label">TOOLS</span>{project.details}</p>

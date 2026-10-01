@@ -12,3 +12,4 @@ npm run deploy
 
  credits: 
 - template: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
+- cursors: https://jeelh.itch.io/retro-cursor

@@ -1,16 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import logoNormal from '../assets/img/logos/logo normal.svg';
 
 const Home = () => (
   <>
     <header className="masthead" id="home">
-      <div className="masthead-top">
-        <Link className="brand-link" to="/" aria-label="David Chicas, home">
-          <img src={logoNormal} className="masthead-logo" alt="David Chicas logo" />
-        </Link>
-      </div>
-
       <nav className="section-nav" aria-label="Page sections">
         <div className="section-links">
           <a href="#about">ABOUT</a>
@@ -48,7 +40,7 @@ const Home = () => (
       <h1 id="page-title">David Chicas</h1>
       <p className="intro-detail">
         {'>'} A software developer in St. John's, Newfoundland. Here are some of my projects, info about me,
-        and a way to get in touch.
+        and a way to get in touch
       </p>
     </section>
   </>

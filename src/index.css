@@ -20,6 +20,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 1.5rem;
+  cursor: url('./assets/cursors/Normal Select Light.cur'), auto;
 }
 
 body {
@@ -35,32 +36,26 @@ body {
 
 body::before {
   position: fixed;
-  z-index: 0;
+  z-index: 2;
   inset: 0;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E"),
+    url('./assets/img/dust-texture.png'),
     repeating-linear-gradient(
       to bottom,
       transparent 0,
       transparent 2px,
-      rgba(252, 252, 250, 0.2) 3px
+      rgba(252, 252, 250, 0.08) 3px
     );
-  opacity: 0.22;
-  content: '';
-  pointer-events: none;
-}
-
-body::after {
-  position: fixed;
-  z-index: 0;
-  inset: -4%;
-  background: radial-gradient(ellipse at center, transparent 56%, rgba(0, 0, 0, 0.48) 100%);
+  background-size: 400px 300px, auto;
+  opacity: 0.08;
+  mix-blend-mode: screen;
   content: '';
   pointer-events: none;
 }
 
 a {
   color: var(--text);
+  cursor: url('./assets/cursors/Alternate Select Light.cur'), pointer;
   text-decoration: none;
   text-underline-offset: 0.2em;
 }
@@ -82,7 +77,7 @@ a:focus-visible {
     scroll-behavior: auto;
   }
 
-  .introduction h1::after {
+  .intro-detail::after {
     animation: none;
   }
 }

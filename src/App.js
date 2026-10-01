@@ -20,6 +20,33 @@ const Portfolio = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    const root = document.documentElement;
+    let frameId = null;
+    let pointerX = window.innerWidth / 2;
+    let pointerY = window.innerHeight / 2;
+
+    const updatePointer = (event) => {
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+
+      if (frameId !== null) return;
+
+      frameId = window.requestAnimationFrame(() => {
+        root.style.setProperty('--pointer-x', `${pointerX}px`);
+        root.style.setProperty('--pointer-y', `${pointerY}px`);
+        frameId = null;
+      });
+    };
+
+    window.addEventListener('pointermove', updatePointer, { passive: true });
+
+    return () => {
+      window.removeEventListener('pointermove', updatePointer);
+      if (frameId !== null) window.cancelAnimationFrame(frameId);
+    };
+  }, []);
+
+  useEffect(() => {
     const normalizedPath = pathname.replace(/\/+$/, '').toLowerCase();
     const targetId = legacyProjectRoutes[normalizedPath];
 
@@ -32,15 +59,18 @@ const Portfolio = () => {
   }, [pathname]);
 
   return (
-    <div className="App">
-      <Home />
-      <main id="main" className="terminal-content">
-        <AboutMe />
-        <Projects />
-        <Contact />
-        <Footer />
-      </main>
-    </div>
+    <>
+      <div className="crt-screen-effects" aria-hidden="true" />
+      <div className="App">
+        <Home />
+        <main id="main" className="terminal-content">
+          <AboutMe />
+          <Projects />
+          <Contact />
+          <Footer />
+        </main>
+      </div>
+    </>
   );
 };
 
