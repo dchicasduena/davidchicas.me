@@ -16,8 +16,21 @@ const legacyProjectRoutes = {
   '/moreprojects': 'projects',
 };
 
+const notFoundArt = String.raw` __    __   ______   __    __ 
+|  \  |  \ /      \ |  \  |  \
+| $$  | $$|  $$$$$$\| $$  | $$
+| $$__| $$| $$$\| $$| $$__| $$
+| $$    $$| $$$$\ $$| $$    $$
+ \$$$$$$$$| $$\$$\$$ \$$$$$$$$
+      | $$| $$_\$$$$      | $$
+      | $$ \$$  \$$$      | $$
+       \$$  \$$$$$$        \$$
+                              `;
+
 const Portfolio = () => {
   const { pathname } = useLocation();
+  const normalizedPath = pathname.replace(/\/+$/, '').toLowerCase();
+  const isPortfolioPath = normalizedPath === '' || Object.prototype.hasOwnProperty.call(legacyProjectRoutes, normalizedPath);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -59,7 +72,6 @@ const Portfolio = () => {
   }, []);
 
   useLayoutEffect(() => {
-    const normalizedPath = pathname.replace(/\/+$/, '').toLowerCase();
     const targetId = legacyProjectRoutes[normalizedPath];
 
     if (targetId) {
@@ -68,7 +80,24 @@ const Portfolio = () => {
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
     }
-  }, [pathname]);
+  }, [normalizedPath]);
+
+  if (!isPortfolioPath) {
+    return (
+      <>
+        <div className="crt-screen-effects" aria-hidden="true" />
+        <main className="App not-found-content">
+          <pre className="not-found-art" aria-hidden="true">{notFoundArt}</pre>
+          <h1 className="not-found-title">
+            sorry something went wrong<span className="not-found-cursor" aria-hidden="true">_</span>
+          </h1>
+          <p className="project-links">
+            <a href="/">go back to main</a>
+          </p>
+        </main>
+      </>
+    );
+  }
 
   return (
     <>

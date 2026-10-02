@@ -148,11 +148,11 @@
 
 .intro-detail::after {
   display: inline-block;
-  margin-left: 0.16em;
   color: var(--text);
-  content: '_';
+  content: ' _';
   text-shadow: 0 0 8px rgba(252, 252, 250, 0.55);
   animation: crt-cursor-blink 1.1s steps(2, start) infinite;
+  margin-left: 2px;
 }
 
 @keyframes crt-cursor-blink {
@@ -184,6 +184,13 @@
 .section-title {
   margin: 0 0 14px;
   color: var(--amber);
+  font-size: var(--font-heading);
+  font-weight: 600;
+}
+
+.project-title {
+  margin: 0 0 14px;
+  color: var(--text);
   font-size: var(--font-heading);
   font-weight: 600;
 }
@@ -252,6 +259,19 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
+  gap: 0.35em;
+}
+
+.contact-list a {
+  color: inherit;
+  font-size: inherit;
+  text-shadow: inherit;
+}
+
+.contact-list a:hover,
+.contact-list a:focus-visible {
+  color: var(--amber);
+  text-shadow: 0 0 8px rgba(243, 205, 94, 0.5);
 }
 
 .footer {
@@ -267,10 +287,69 @@
   color: inherit;
 }
 
+.footer-icon:hover,
+.footer-icon:focus-visible {
+  color: var(--amber);
+  text-shadow: 0 0 8px rgba(243, 205, 94, 0.5);
+}
+
+.not-found-content {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.not-found-art {
+  max-width: 100%;
+  margin: 0 0 18px;
+  overflow: hidden;
+  color: var(--amber);
+  font-size: var(--font-copy);
+  line-height: 1.2;
+  white-space: pre;
+}
+
+.not-found-title {
+  margin: 0;
+  color: var(--text);
+  font-size: var(--font-heading);
+  font-weight: 600;
+}
+
+.not-found-cursor {
+  margin-left: 0.35em;
+  color: var(--text);
+  text-shadow: 0 0 8px rgba(252, 252, 250, 0.55);
+  animation: crt-cursor-blink 1.1s steps(2, start) infinite;
+}
+
+.not-found-content > .project-links {
+  align-self: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .crt-screen-effects,
   .crt-screen-effects::before {
     animation: none;
+  }
+
+  .not-found-cursor {
+    animation: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .not-found-art {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .not-found-art {
+    font-size: 14px;
   }
 }
 

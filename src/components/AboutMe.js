@@ -3,16 +3,16 @@ import React from 'react';
 const AboutMe = () => {
   return (
     <section id="about" className="text-section">
-      <h2 className="section-title">About</h2>
+      <h2 className="section-title">about</h2>
       <p>
-        {'>'} Currently working for Strong Data Automation. I am interested
+        <span className="project-number">&gt;</span>{' '}currently working for strong data automation. i am interested
         in frontend and backend development, multimedia programming, and user
-        interface design.
+        interface design
       </p>
-      <p className="detail-line">
-        <span className="detail-label">Known Languages &amp; Tools</span>
-        React, Node.js, Express, HTML/CSS, JavaScript, Python, C, C++, Git,
-        MongoDB, SQL, Pandas, Plotly.
+      <p>
+        known languages &amp; tools:
+        react, node.js, express, html/css, javascript, python, c, c++, git,
+        mongodb, sql, pandas, plotly and dotnet architecture
       </p>
     </section>
   );

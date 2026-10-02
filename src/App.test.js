@@ -17,7 +17,7 @@ test('renders the text-first portfolio and section links', () => {
   expect(screen.getByRole('heading', { name: /about/i })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: /projects/i })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: /contact/i })).toBeInTheDocument();
-  expect(screen.getByText('01.', { selector: '.project-number' })).toBeInTheDocument();
+  expect(screen.getAllByText('>', { selector: '.project-number' })).toHaveLength(7);
 });
 
 test('keeps legacy project URLs and shows their project entry', () => {
@@ -26,4 +26,12 @@ test('keeps legacy project URLs and shows their project entry', () => {
 
   expect(window.location.pathname).toBe('/cardBinder');
   expect(screen.getByRole('heading', { name: /card binder/i })).toBeInTheDocument();
+});
+
+test('shows the 404 screen and a link back home for unknown routes', () => {
+  window.history.pushState({}, '', '/missing-page');
+  render(<App />);
+
+  expect(screen.getByRole('heading', { name: /sorry something went wrong/i })).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /go back to main/i })).toHaveAttribute('href', '/');
 });

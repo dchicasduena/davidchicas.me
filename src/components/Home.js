@@ -102,7 +102,7 @@ const Home = () => {
         );
       }
     } else if (animationPhase === 'holding') {
-      timer = setTimeout(() => setAnimationPhase('deleting'), 5000);
+      timer = setTimeout(() => setAnimationPhase('deleting'), 25000);
     } else if (visibleColumns === 0) {
       timer = setTimeout(() => {
         setArtIndex((index) => (index + 1) % artFrames.length);
@@ -126,9 +126,9 @@ const Home = () => {
       <header className="masthead" id="home">
         <nav className="section-nav" aria-label="Page sections">
           <div className="section-links">
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+            <a href="#about">about</a>
+            <a href="#projects">projects</a>
+            <a href="#contact">contact</a>
           </div>
 
           <div className="social-links" aria-label="External links">
@@ -174,8 +174,8 @@ const Home = () => {
           </pre>
         </div>
         <p className="intro-detail">
-          {'>'} A software developer in St. John's, Newfoundland. Here are some of my projects, some information about me,
-          and a way to get in touch 
+          <span className="project-number">&gt;</span>{' '}software developer in newfoundland, canada. here are some of my projects, some information about me,
+          and a couple ways to get in touch{' '}
         </p>
       </section>
     </>
