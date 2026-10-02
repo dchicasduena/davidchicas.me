@@ -13,7 +13,7 @@
   overflow: hidden;
   border-radius: 1.5% / 1.8%;
   background:
-    radial-gradient(260px 220px at var(--pointer-x, 50%) var(--pointer-y, 50%), rgba(243, 205, 94, 0.075), rgba(243, 205, 94, 0.025) 36%, transparent 72%),
+    radial-gradient(260px 220px at var(--pointer-x, 50%) var(--pointer-y, 50%), rgba(115, 134, 213, 0.075), rgba(115, 134, 213, 0.025) 36%, transparent 72%),
     radial-gradient(ellipse at center, transparent 54%, rgba(0, 0, 0, 0.38) 100%);
   box-shadow: inset 0 0 110px rgba(0, 0, 0, 0.42);
   pointer-events: none;
@@ -26,7 +26,7 @@
   right: 0;
   left: 0;
   height: 12vh;
-  background: linear-gradient(180deg, transparent, rgba(252, 252, 250, 0.04), rgba(243, 205, 94, 0.025), transparent);
+  background: linear-gradient(180deg, transparent, rgba(252, 252, 250, 0.04), rgba(115, 134, 213, 0.025), transparent);
   content: '';
   animation: crt-scan-beam 18s linear infinite;
 }
@@ -81,7 +81,7 @@
 .section-links a,
 .eyebrow,
 .detail-label {
-  color: var(--amber);
+  color: var(--purple);
   letter-spacing: 0.08em;
 }
 
@@ -118,11 +118,11 @@
   height: 140px;
   overflow: hidden;
   margin: 0 0 12px;
-  color: var(--amber);
+  color: var(--text);
   font-size: 38px;
   font-weight: 600;
   line-height: 1.15;
-  text-shadow: 0 0 8px rgba(243, 205, 94, 0.3);
+  text-shadow: 0 0 8px rgba(115, 134, 213, 0.5);
 }
 
 .ascii-title {
@@ -183,7 +183,7 @@
 
 .section-title {
   margin: 0 0 14px;
-  color: var(--amber);
+  color: var(--purple);
   font-size: var(--font-heading);
   font-weight: 600;
 }
@@ -196,7 +196,7 @@
 }
 
 .project-number {
-  color: var(--amber);
+  color: var(--purple);
 }
 
 .text-section > p {
@@ -238,12 +238,12 @@
 }
 
 .project-links a::before {
-  color: var(--amber);
+  color: var(--purple);
   content: '[ ';
 }
 
 .project-links a::after {
-  color: var(--amber);
+  color: var(--purple);
   content: ' ]';
 }
 
@@ -270,8 +270,8 @@
 
 .contact-list a:hover,
 .contact-list a:focus-visible {
-  color: var(--amber);
-  text-shadow: 0 0 8px rgba(243, 205, 94, 0.5);
+  color: var(--purple);
+  text-shadow: 0 0 8px rgba(115, 134, 213, 0.5);
 }
 
 .footer {
@@ -289,8 +289,8 @@
 
 .footer-icon:hover,
 .footer-icon:focus-visible {
-  color: var(--amber);
-  text-shadow: 0 0 8px rgba(243, 205, 94, 0.5);
+  color: var(--purple);
+  text-shadow: 0 0 8px rgba(115, 134, 213, 0.5);
 }
 
 .not-found-content {
@@ -306,7 +306,7 @@
   max-width: 100%;
   margin: 0 0 18px;
   overflow: hidden;
-  color: var(--amber);
+  color: var(--text);
   font-size: var(--font-copy);
   line-height: 1.2;
   white-space: pre;
