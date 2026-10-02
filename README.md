@@ -16,4 +16,3 @@ npm run deploy
 - ascii art: https://patorjk.com/software/taag
 - Dust texture: https://www.toptal.com/designers/subtlepatterns/dust/
 - crt effect: https://dev.to/remojansen/building-a-retro-crt-terminal-website-with-webgl-and-github-copilot-claude-opus-35-3jfd
-- https://sorto-dedd.itch.io/dummy-dungeon and https://sorto-dedd.itch.io/dummy-dungeon-character-pack
