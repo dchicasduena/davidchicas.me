@@ -89,7 +89,7 @@ const Portfolio = () => {
         <main className="App not-found-content">
           <pre className="not-found-art" aria-hidden="true">{notFoundArt}</pre>
           <h1 className="not-found-title">
-            sorry something went wrong<span className="not-found-cursor" aria-hidden="true">_</span>
+            sorry something went wrong ...<span className="not-found-cursor" aria-hidden="true">_</span>
           </h1>
           <p className="project-links">
             <a href="/">go back to main</a>

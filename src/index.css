@@ -62,6 +62,10 @@ a {
   text-underline-offset: 0.2em;
 }
 
+a.inline-text-link {
+  font: inherit;
+}
+
 a:hover,
 a:focus-visible {
   color: var(--purple);
