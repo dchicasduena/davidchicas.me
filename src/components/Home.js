@@ -4,6 +4,24 @@ const ART_PATH = `${process.env.PUBLIC_URL}/assets/ascii-art/david-chicas.txt`;
 const MOBILE_ART_PATH = `${process.env.PUBLIC_URL}/assets/ascii-art/david-chicas-mobile.txt`;
 const FALLBACK_ART = 'DAVID CHICAS';
 
+const shuffleArtFrames = (frames, previousFrame) => {
+  const shuffledFrames = [...frames];
+
+  for (let index = shuffledFrames.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffledFrames[index], shuffledFrames[randomIndex]] =
+      [shuffledFrames[randomIndex], shuffledFrames[index]];
+  }
+
+  if (shuffledFrames.length > 1 && shuffledFrames[0] === previousFrame) {
+    const differentFrameIndex = shuffledFrames.findIndex((frame) => frame !== previousFrame);
+    [shuffledFrames[0], shuffledFrames[differentFrameIndex]] =
+      [shuffledFrames[differentFrameIndex], shuffledFrames[0]];
+  }
+
+  return shuffledFrames;
+};
+
 const Home = () => {
   const [artFrames, setArtFrames] = useState([FALLBACK_ART]);
   const [mobileArt, setMobileArt] = useState(FALLBACK_ART);
@@ -37,7 +55,7 @@ const Home = () => {
           .filter(Boolean) || [];
 
         if (frames.length > 0) {
-          setArtFrames(frames);
+          setArtFrames(shuffleArtFrames(frames));
           setArtIndex(0);
           setVisibleColumns(0);
           setAnimationPhase('typing');
@@ -105,7 +123,12 @@ const Home = () => {
       timer = setTimeout(() => setAnimationPhase('deleting'), 25000);
     } else if (visibleColumns === 0) {
       timer = setTimeout(() => {
-        setArtIndex((index) => (index + 1) % artFrames.length);
+        if (artIndex === artFrames.length - 1) {
+          setArtFrames((frames) => shuffleArtFrames(frames, frames[artIndex]));
+          setArtIndex(0);
+        } else {
+          setArtIndex((index) => index + 1);
+        }
         setAnimationPhase('typing');
       }, 250);
     } else {
