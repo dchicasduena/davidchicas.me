@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const ART_PATH = `${process.env.PUBLIC_URL}/assets/ascii-art/david-chicas.txt`;
-const MOBILE_ART_PATH = `${process.env.PUBLIC_URL}/assets/ascii-art/david-chicas-mobile.txt`;
+const ART_PATH = '/assets/ascii-art/david-chicas.txt';
+const MOBILE_ART_PATH = '/assets/ascii-art/david-chicas-mobile.txt';
 const FALLBACK_ART = 'DAVID CHICAS';
 
 const shuffleArtFrames = (frames, previousFrame) => {

@@ -6,12 +6,20 @@ portfolio site with some info about me, my projects and contact information
 - better seo
 - fix indexing issues
 
-build app:
-npm run build
-npm run deploy
+built with react + vite
+
+run locally:
+`npm install`
+`npm start`
+
+production build:
+`npm run build`
+`npm run preview`
+
+deploy to gh pages:
+`npm run deploy`
 
  credits: 
-- template: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
 - cursors: https://jeelh.itch.io/retro-cursor
 - ascii art: https://patorjk.com/software/taag
 - Dust texture: https://www.toptal.com/designers/subtlepatterns/dust/
