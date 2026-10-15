@@ -318,6 +318,140 @@
   text-shadow: 0 0 8px rgba(115, 134, 213, 0.5);
 }
 
+/*-------------------------------------------------------------
+# Terminal
+--------------------------------------------------------------*/
+.terminal-overlay {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  pointer-events: none;
+}
+
+.terminal-window {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 760px);
+  height: min(70vh, 520px);
+  border: 1px solid #3c3c3c;
+  border-radius: 8px;
+  background: var(--night);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+  color: var(--text);
+  font-size: var(--font-copy);
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.terminal-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  flex-shrink: 0;
+  height: 36px;
+  padding: 0 6px 0 12px;
+  border-bottom: 1px solid #3c3c3c;
+  background: #2b2b2b;
+  cursor: url('./assets/cursors/Move Light.cur'), move;
+  touch-action: none;
+  user-select: none;
+}
+
+.terminal-window.is-dragging {
+  will-change: transform;
+}
+
+.terminal-window.is-dragging,
+.terminal-window.is-dragging * {
+  cursor: url('./assets/cursors/Move Light.cur'), move;
+}
+
+.terminal-title {
+  color: #c8c8c8;
+  font-size: var(--font-copy);
+  white-space: nowrap;
+}
+
+.terminal-close {
+  justify-self: end;
+  width: 30px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: #c8c8c8;
+  font: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.terminal-close:hover,
+.terminal-close:focus-visible {
+  background: #c2453b;
+  color: #ffffff;
+}
+
+.terminal-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px 16px;
+}
+
+.terminal-log {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.terminal-entry {
+  margin-bottom: 4px;
+}
+
+.terminal-line {
+  margin: 0;
+}
+
+.terminal-error {
+  color: #e88b8b;
+}
+
+.terminal-prompt {
+  flex-shrink: 0;
+  color: var(--text);
+  white-space: pre;
+}
+
+.terminal-prompt-user {
+  color: var(--purple);
+}
+
+.terminal-input-line {
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+}
+
+.terminal-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  caret-color: var(--text);
+}
+
 .not-found-content {
   display: flex;
   min-height: 100vh;
