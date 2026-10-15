@@ -289,16 +289,27 @@
 }
 
 .footer {
-  display: flex;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
   padding: 24px 0 0;
   color: var(--text);
   font-size: var(--font-copy);
-  text-align: right;
+  text-align: center;
 }
 
 .footer a {
   color: inherit;
+}
+
+.footer .project-links {
+  grid-column: 2;
+}
+
+.footer-icon {
+  grid-column: 3;
+  justify-self: end;
+  text-align: right;
 }
 
 .footer-icon:hover,
