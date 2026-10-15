@@ -181,11 +181,17 @@
   scroll-margin-top: 24px;
 }
 
-.section-title {
+.section-title,
+.project-entry .project-name {
   margin: 0 0 14px;
-  color: var(--purple);
+  font-family: 'Poppins', sans-serif;
   font-size: var(--font-heading);
   font-weight: 600;
+  line-height: 1.65;
+}
+
+.section-title {
+  color: var(--purple);
 }
 
 

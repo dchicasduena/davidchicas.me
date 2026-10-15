@@ -214,7 +214,6 @@ Y8888D' YP   YP    YP    Y888888P Y8888D'       `Y88P' YP   YP Y888888P  `Y88P' 
  *   *********     ***** **      *****      *** *  *****            *******    **     **   *** *  *******    ***** **     ****    
 *       ****        ***   **                 ***    ***               ***       **    **    ***    *****      ***   **            
 *                                                                                     *                                           
- **                                                                                  *                                            
 
 %%ART%%
 
@@ -308,3 +307,73 @@ ________________________________________________________________________________
 d8P' ?88  d8P' ?88  d88  d8P'  88Pd8P' ?88      d8P' `P  88P `?8b  88Pd8P' `Pd8P' ?88   ?8b,   
 88b  ,88b 88b  ,88b ?8b ,88'  d88 88b  ,88b     88b     d88   88P d88 88b    88b  ,88b    `?8b 
 `?88P'`88b`?88P'`88b`?888P'  d88' `?88P'`88b    `?888P'd88'   88bd88' `?888P'`?88P'`88b`?888P' 
+                                                                                                                                                                                                                                        
+%%ART%% 
+ 
+     888                   ,e,      888            888     ,e,                        
+ e88 888  ,"Y88b Y8b Y888P  "   e88 888    e88'888 888 ee   "   e88'888  ,"Y88b  dP"Y 
+d888 888 "8" 888  Y8b Y8P  888 d888 888   d888  '8 888 88b 888 d888  '8 "8" 888 C88b  
+Y888 888 ,ee 888   Y8b "   888 Y888 888   Y888   , 888 888 888 Y888   , ,ee 888  Y88D 
+ "88 888 "88 888    Y8P    888  "88 888    "88,e8' 888 888 888  "88,e8' "88 888 d,dP  
+                                                                                                                                                                                                                                       
+%%ART%% 
+                                                                                                                             
+.sSSSSs.    .sSSSSs.    .sSSS s.    SSSSS .sSSSSs.         .sSSSSs.    .sSSS SSSSS SSSSS .sSSSSs.    .sSSSSs.    .sSSSSSSSs. 
+S SSSSSSSs. S SSSSSSSs. S SSS SSSs. S SSS S SSSSSSSs.      S SSSSSSSs. S SSS SSSSS S SSS S SSSSSSSs. S SSSSSSSs. S SSS SSSS' 
+S  SS SSSSS S  SS SSSSS S  SS SSSSS S  SS S  SS SSSSS      S  SS SSSS' S  SS SSSSS S  SS S  SS SSSS' S  SS SSSSS S  SS       
+S..SS SSSSS S..SSsSSSSS S..SS SSSSS S..SS S..SS SSSSS      S..SS       S..SSsSSSSS S..SS S..SS       S..SSsSSSSS `SSSSsSSSa. 
+S:::S SSSSS S:::S SSSSS  S::S SSSS  S:::S S:::S SSSSS      S:::S SSSSS S:::S SSSSS S:::S S:::S SSSSS S:::S SSSSS .sSSS SSSSS 
+S;;;S SSSSS S;;;S SSSSS   S;S SSS   S;;;S S;;;S SSSSS      S;;;S SSSSS S;;;S SSSSS S;;;S S;;;S SSSSS S;;;S SSSSS S;;;S SSSSS 
+S%%%S SSSS' S%%%S SSSSS    SS SS    S%%%S S%%%S SSSS'      S%%%S SSSSS S%%%S SSSSS S%%%S S%%%S SSSSS S%%%S SSSSS S%%%S SSSSS 
+SSSSSsS;:'  SSSSS SSSSS     SsS     SSSSS SSSSSsS;:'       SSSSSsSSSSS SSSSS SSSSS SSSSS SSSSSsSSSSS SSSSS SSSSS SSSSSsSSSSS 
+
+%%ART%%
+
+ ___     ____  __ __  ____  ___           __  __ __  ____   __   ____  _____
+|   \   /    ||  |  ||    ||   \         /  ||  |  ||    | /  | /    |/ ___/
+|    \ |  o  ||  |  | |  | |    \       /  / |  |  | |  | /  / |  o  |   \_ 
+|  D  ||     ||  |  | |  | |  D  |     /  /  |  _  | |  |/  /  |     |\__  |
+|     ||  _  ||  :  | |  | |     |    /   \_ |  |  | |  /   \_ |  _  |/  \ |
+|     ||  |  | \   /  |  | |     |    \     ||  |  | |  \     ||  |  |\    |
+|_____||__|__|  \_/  |____||_____|     \____||__|__||____\____||__|__| \___|
+
+%%ART%%
+
+  88PPP. ,8b.     d88   88  8888   88PPP.     doooooo 888  888  8888 doooooo ,8b.     88888888  
+  88   8 88'8o    d88   88  8888   88   8     d88     88888888  8888 d88     88'8o    88ooooPp  
+  88   8 88PPY8.  d88_o8P'  8888   88   8     d88     88P  888  8888 d88     88PPY8.         d8 
+  88oop' 8b   `Y' Y88P'     8888   88oop'     d888888 88P  888  8888 d888888 8b   `Y' 8888888P  
+
+%%ART%%
+
+   ..                      _            .       ..                                   .                             .x+=:.   
+ dF                       u            @88>   dF                        .uef^"      @88>                          z`    ^%  
+'88bu.                   88Nu.   u.    %8P   '88bu.                   :d88E         %8P                              .   <k 
+'*88888bu         u     '88888.o888c    .    '*88888bu            .   `888E          .          .         u        .@8Ned8" 
+  ^"*8888N     us888u.   ^8888  8888  .@88u    ^"*8888N      .udR88N   888E .z8k   .@88u   .udR88N     us888u.   .@^%8888"  
+ beWE "888L .@88 "8888"   8888  8888 ''888E`  beWE "888L    <888'888k  888E~?888L ''888E` <888'888k .@88 "8888" x88:  `.8b. 
+ 888E  888E 9888  9888    8888  8888   888E   888E  888E    9888 'Y"   888E  888E   888E  9888 'Y"  9888  9888  8888N=*8888 
+ 888E  888E 9888  9888    8888  8888   888E   888E  888E    9888       888E  888E   888E  9888      9888  9888   %8"    R88 
+ 888E  888F 9888  9888   .8888b.888P   888E   888E  888F    9888       888E  888E   888E  9888      9888  9888    @8Wou 9%  
+.888N..888  9888  9888    ^Y8888*""    888&  .888N..888     ?8888u../  888E  888E   888&  ?8888u../ 9888  9888  .888888P`   
+ `"888*""   "888*""888"     `Y"        R888"  `"888*""       "8888P'  m888N= 888>   R888"  "8888P'  "888*""888" `   ^"F     
+    ""       ^Y"   ^Y'                  ""       ""            "P'     `Y"   888     ""      "P'     ^Y"   ^Y'              
+                                                                            J88"                                            
+                                                                            @%                                              
+                                                                          :"                                                
+
+%%ART%%
+
+                  db    `Yb                                               `Yb.                          db             
+               db    db  88               db                                `Yb         db           db    db          
+                         88                                                   Yb                                       
+`Yb.d88b d88b    'Yb     88 d88b d88b    'Yb `Yb.d88b d88b      .dP'  dP'      Yb      'Yb .dP'  dP'   'Yb    .d888b.  
+ 88'   8Y   8b    88     88P   8Y   8b    88  88'   8Y   8b     88    88      dPYb      88 88    88     88    8'   `Yb 
+ 88    8P   88    88     88    8P   88    88  88    8P   88     Y8   .88    ,dP  Yb     88 Y8   .88     88    Yb.   88 
+ 88  ,dP  ,dP    .8P     88  .dP' .dP'   .8P  88  ,dP  ,dP      `Y88P'88  .dP'    `Yb. .8P `Y88P'88    .8P        .dP  
+ 88                      8888888888888b.      88                      88                         88             .dP'   
+ 88                                           88                      88                         88           .dP'     
+.8P                                          .8P                      Y8.                        Y8.                   
+
+%%ART%%
+
