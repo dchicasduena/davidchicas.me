@@ -380,13 +380,21 @@ h6,
 .footer {
   padding: 0 0 1rem 0;
   justify-content: center;
-  text-align: right;
+  text-align: center;
   padding: 0.5rem;
   padding-right: 1rem;
 }
 
 .footer a {
   color: #000;
+}
+
+.footer-icon {
+  padding: 0 0 1rem 0;
+  justify-content: center;
+  text-align: right;
+  padding: 0.5rem;
+  padding-right: 1rem;
 }
 
 .social a {
