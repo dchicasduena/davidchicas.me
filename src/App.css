@@ -8,7 +8,7 @@
 
 .crt-screen-effects {
   position: fixed;
-  z-index: 3;
+  z-index: 4;
   inset: 0;
   overflow: hidden;
   border-radius: 1.5% / 1.8%;
@@ -60,6 +60,12 @@
   height: 44px;
   place-items: center;
   font-size: 29px;
+}
+
+.social-links a:hover i,
+.footer-icon:hover i {
+  animation: none;
+  transform: none;
 }
 
 .section-nav {
@@ -140,6 +146,7 @@
   line-height: 1.08;
   text-shadow: inherit;
   white-space: pre;
+  cursor: url('./assets/cursors/Alternate Select Light.cur'), pointer;
 }
 
 .ascii-title-mobile {
@@ -321,9 +328,44 @@
 /*-------------------------------------------------------------
 # Terminal
 --------------------------------------------------------------*/
-.terminal-overlay {
+.crt-power-off {
   position: fixed;
   z-index: 10;
+  inset: 0;
+  overflow: hidden;
+  background: #0c0c0c;
+}
+
+.crt-power-off,
+.crt-power-off * {
+  cursor: none;
+}
+
+.crt-power-off-picture {
+  position: absolute;
+  inset: 0;
+  background: #dcdcdc;
+  animation: crt-power-collapse 0.7s ease-in forwards;
+}
+
+@keyframes crt-power-collapse {
+  0% {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+  55% {
+    transform: scale(1, 0.004);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.004, 0.004);
+    opacity: 0;
+  }
+}
+
+.terminal-overlay {
+  position: fixed;
+  z-index: 2;
   inset: 0;
   display: grid;
   place-items: center;
@@ -344,6 +386,7 @@
   font-size: var(--font-copy);
   overflow: hidden;
   pointer-events: auto;
+  cursor: url('./assets/cursors/Alternate Select Light.cur'), pointer;
 }
 
 .terminal-header {
@@ -364,15 +407,22 @@
   will-change: transform;
 }
 
-.terminal-window.is-dragging,
-.terminal-window.is-dragging * {
-  cursor: url('./assets/cursors/Move Light.cur'), move;
-}
-
 .terminal-title {
   color: #c8c8c8;
   font-size: var(--font-copy);
   white-space: nowrap;
+}
+
+.terminal-window .terminal-title,
+.terminal-window .terminal-prompt,
+.terminal-window .terminal-close {
+  cursor: url('./assets/cursors/Alternate Select Light.cur'), pointer;
+}
+
+/* style.css sets `span:hover { cursor: pointer }`, which overrides inherited cursors on spans */
+.ascii-title span:hover,
+.terminal-window span:hover {
+  cursor: url('./assets/cursors/Alternate Select Light.cur'), pointer;
 }
 
 .terminal-close {
@@ -387,7 +437,6 @@
   font: inherit;
   font-size: 22px;
   line-height: 1;
-  cursor: pointer;
 }
 
 .terminal-close:hover,
@@ -396,20 +445,23 @@
   color: #ffffff;
 }
 
-.terminal-body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  min-height: 0;
-  padding: 12px 16px;
+.terminal-window.is-dragging,
+.terminal-window.is-dragging *,
+.terminal-window.is-dragging span:hover {
+  cursor: url('./assets/cursors/Move Light.cur'), move;
 }
 
-.terminal-log {
+.terminal-body {
   flex: 1;
   min-height: 0;
+  padding: 12px 16px;
   overflow-y: auto;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+.terminal-log {
+  margin: 0;
 }
 
 .terminal-entry {
@@ -434,22 +486,66 @@
   color: var(--purple);
 }
 
+.terminal-prompt-home {
+  color: #e8c47a;
+}
+
 .terminal-input-line {
   display: flex;
   align-items: baseline;
   margin: 0;
+  cursor: url('./assets/cursors/Text Select Light.cur'), text;
+}
+
+.terminal-input-field {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.terminal-input-text {
+  display: block;
+  color: var(--text);
+  white-space: pre;
+  pointer-events: none;
+}
+
+.terminal-input-cursor {
+  animation: crt-cursor-blink 1.1s steps(2, start) infinite;
 }
 
 .terminal-input {
-  flex: 1;
-  min-width: 0;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   padding: 0;
   border: 0;
   outline: none;
   background: transparent;
-  color: var(--text);
+  color: transparent;
   font: inherit;
-  caret-color: var(--text);
+  caret-color: transparent;
+  cursor: inherit;
+}
+
+.terminal-today {
+  color: var(--purple);
+}
+
+.terminal-label {
+  color: var(--purple);
+}
+
+.terminal-accent {
+  color: #e8c47a;
+}
+
+.terminal-freeze {
+  position: fixed;
+  z-index: 9;
+  inset: 0;
 }
 
 .not-found-content {
