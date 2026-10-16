@@ -53,11 +53,11 @@ const Projects = () => (
     <div className="project-list">
       {projects.map((project) => (
         <article className="project-entry" id={`project-${project.id}`} key={project.id}>
-          <h2 className="project-name">
-            <span className="project-number">&gt;</span>{' '}
+          <p className="project-name">
+            <span className="project-number"></span>{' '}
             {project.name}
-          </h2>
-          <p>{project.description}</p>
+          </p>
+          <p><span className="project-number">&gt;</span>{' '}{project.description}</p>
           <p className="project-details"><span className="detail-label">tools:</span>{project.details}</p>
           {project.links?.length > 0 && (
             <p className="project-links">

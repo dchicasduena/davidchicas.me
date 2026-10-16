@@ -197,22 +197,18 @@
   line-height: 1.65;
 }
 
+.project-entry .project-name {
+  font-size: var(--font-copy);
+}
+
 .section-title {
   color: var(--purple);
 }
 
-
-.project-title {
-  margin: 0 0 0;
-  color: var(--text);
-  font-size: var(--font-heading);
-  font-weight: 600;
-}
-
 .project-name {
   margin: 0 0 0;
-  color: var(--white);
-  font-size: var(--font-heading);
+  color: var(--text);
+  font-size: var(--font-copy);
   font-weight: 600;
 }
 
@@ -274,10 +270,12 @@
   margin: 14px 0 0;
   padding: 0;
   list-style: none;
+  font-size: var(--font-copy);
 }
 
 .contact-list li {
   display: flex;
+  font-size: var(--font-copy);
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.35em;
@@ -285,7 +283,7 @@
 
 .contact-list a {
   color: inherit;
-  font-size: inherit;
+  font-size: var(--font-copy);
   text-shadow: inherit;
 }
 
