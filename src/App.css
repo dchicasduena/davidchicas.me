@@ -281,6 +281,11 @@
   gap: 0.35em;
 }
 
+.contact-list span,
+.contact-list span:hover {
+  cursor: url('./assets/cursors/Normal Select Light.cur'), auto;
+}
+
 .contact-list a {
   color: inherit;
   font-size: var(--font-copy);
