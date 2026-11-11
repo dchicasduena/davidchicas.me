@@ -4,7 +4,7 @@ export const HELP_COMMANDS = [
   'sort', 'export', 'zip', 'unzip', 'ssh', 'service', 'ps', 'kill', 'killall', 'df', 'mount',
   'chmod', 'chown', 'ifconfig', 'traceroute', 'wget', 'ufw', 'iptables', 'apt', 'pacman',
   'yum', 'rpm', 'sudo', 'cal', 'alias', 'dd', 'whereis', 'whatis', 'top', 'useradd', 'usermod',
-  'passwd', 'help', 'nanofetch', 'forkbomb', 'shutdown',
+  'passwd', 'help', 'history', 'date', 'about', 'projects', 'contact', 'resume', 'nanofetch', 'forkbomb', 'shutdown',
 ];
 
 const RESUME_URL = '/assets/resume.pdf';
@@ -28,7 +28,7 @@ const NANOFETCH_ART = [
 ];
 
 const NANOFETCH_INFO = [
-  { label: 'user@davidchicas.me' },
+  { label: 'terminal@davidchicas.me' },
   { value: '-------------------' },
   { label: 'OS:', value: ' Arch Linux x86_64' },
   { label: 'Host:', value: ' GitHub Pages' },
@@ -89,19 +89,52 @@ const directories = new Map([
   ]],
 ]);
 
-const changeDirectory = (args) => {
-  const target = args[0];
-  if (!target || ['~', '.', '..'].includes(target)) return { lines: [] };
-  if (target === 'resume.pdf') return { lines: [], openUrl: RESUME_URL };
-  if (directories.has(target)) return { lines: directories.get(target) };
-  return { lines: [`cd: no such file or directory: ${target}`], isError: true };
+const ROOT = '/home/user';
+const files = new Map([
+  ['about.txt', directories.get('about')],
+  ['projects.txt', directories.get('projects')],
+  ['contact.txt', directories.get('contact')],
+]);
+
+const resolvePath = (path, cwd = ROOT) => {
+  const expandedPath = path === '~' ? ROOT : path.startsWith('~/') ? `${ROOT}${path.slice(1)}` : path;
+  const parts = (expandedPath.startsWith('/') ? expandedPath : `${cwd}/${expandedPath}`).split('/');
+  const resolved = [];
+  const rootDepth = ROOT.split('/').filter(Boolean).length;
+  parts.forEach((part) => {
+    if (!part || part === '.') return;
+    if (part === '..') {
+      if (resolved.length > rootDepth) resolved.pop();
+    }
+    else resolved.push(part);
+  });
+  return `/${resolved.join('/')}`;
+};
+
+const directoryName = (path) => path === ROOT ? '' : path.slice(`${ROOT}/`.length);
+const directoryExists = (path) => path === ROOT || directories.has(directoryName(path));
+
+const changeDirectory = (args, cwd) => {
+  const target = args[0] || ROOT;
+  const path = target === '/' || target === '~' ? ROOT : resolvePath(target, cwd);
+  if (path === `${ROOT}/resume.pdf`) return { lines: [], openUrl: RESUME_URL };
+  if (!directoryExists(path)) {
+    return { lines: [`cd: no such file or directory: ${target}`], isError: true };
+  }
+  return { lines: [], cwd: path };
 };
 
 const implemented = {
   echo: (args) => ({ lines: [args.join(' ')] }),
   clear: () => ({ lines: [], clear: true }),
-  help: () => ({ lines: ['available commands:', ...commandColumns(HELP_COMMANDS)] }),
-  whoami: () => ({ lines: ['user'] }),
+  help: () => ({ lines: ['available commands:', ...commandColumns(AVAILABLE_COMMANDS)] }),
+  whoami: () => ({ lines: ['david'] }),
+  history: (_args, context) => ({ lines: context.history.map((command, index) => `${index + 1}  ${command}`) }),
+  date: () => ({ lines: [new Date().toString()] }),
+  about: () => ({ lines: directories.get('about') }),
+  projects: () => ({ lines: directories.get('projects') }),
+  contact: () => ({ lines: directories.get('contact') }),
+  resume: () => ({ lines: [], openUrl: RESUME_URL }),
   uname: (args) => ({
     lines: [args.includes('-a') ? 'linux davidchicas.me 6.8.0 #1 SMP x86_64 GNU/Linux' : 'linux'],
   }),
@@ -112,10 +145,38 @@ const implemented = {
 };
 
 const simulated = {
-  pwd: () => ({ lines: ['/home/user'] }),
-  ls: () => ({ lines: ['about  contact  projects  resume.pdf'] }),
-  cd: changeDirectory,
-  cat: denied('cat'),
+  pwd: (_args, context) => ({ lines: [context.cwd] }),
+  ls: (args, context) => {
+    const path = !args[0]
+      ? context.cwd
+      : args[0] === '/'
+        ? ROOT
+        : resolvePath(args[0], context.cwd);
+    if (!directoryExists(path)) {
+      return { lines: [`ls: cannot access '${args[0]}': no such directory`], isError: true };
+    }
+    const name = directoryName(path);
+    const contents = name
+      ? [`${name}.txt`]
+      : ['about/', 'contact/', 'projects/', 'resume.pdf'];
+    return { lines: [contents.join('  ')] };
+  },
+  cd: (args, context) => changeDirectory(args, context.cwd),
+  cat: (args, context) => {
+    const target = args[0];
+    if (!target || target === 'resume.pdf') {
+      return target
+        ? { lines: ['cat: resume.pdf is a PDF; use "resume" to open it'], isError: true }
+        : { lines: ['cat: missing file operand'], isError: true };
+    }
+    const path = resolvePath(target, context.cwd);
+    const name = path.split('/').pop();
+    const file = files.get(name);
+    if (file && (path === `${ROOT}/${name}` || path === `${ROOT}/${name.replace('.txt', '')}/${name}`)) {
+      return { lines: file };
+    }
+    return { lines: [`cat: ${target}: no such file`], isError: true };
+  },
   mkdir: denied('mkdir'),
   touch: denied('touch'),
   cp: denied('cp'),
@@ -125,6 +186,10 @@ const simulated = {
   chmod: denied('chmod'),
   chown: denied('chown'),
 };
+
+const AVAILABLE_COMMANDS = HELP_COMMANDS.filter(
+  (name) => Object.hasOwn(implemented, name) || Object.hasOwn(simulated, name)
+);
 
 const commandColumns = (names, perRow = 5) => {
   const rows = [];
@@ -166,15 +231,45 @@ const calendarLines = (date) => {
 const lookup = (table, name) => (Object.hasOwn(table, name) ? table[name] : undefined);
 
 // returns { lines, isError?, clear?, openUrl?, crash?, powerOff? } for a line typed into the terminal.
-export const runCommand = (input) => {
+export const runCommand = (input, context = {}) => {
   // classic fork bomb is only simulated here, never executed.
   if (input.replace(/\s/g, '') === FORK_BOMB_SOURCE) return forkbomb();
 
-  const [name, ...args] = input.trim().split(/\s+/);
+  const cwd = context.cwd || ROOT;
+  const history = context.history || [];
+  const tokens = [];
+  let token = '';
+  let quote = null;
+  let escaped = false;
+
+  for (const character of input.trim()) {
+    if (escaped) {
+      token += character;
+      escaped = false;
+    } else if (character === '\\' && quote !== "'") {
+      escaped = true;
+    } else if (quote) {
+      if (character === quote) quote = null;
+      else token += character;
+    } else if (character === '"' || character === "'") {
+      quote = character;
+    } else if (/\s/.test(character)) {
+      if (token) tokens.push(token);
+      token = '';
+    } else {
+      token += character;
+    }
+  }
+
+  if (escaped) token += '\\';
+  if (quote) return { lines: ['syntax error: unmatched quote'], isError: true };
+  if (token) tokens.push(token);
+
+  const [name, ...args] = tokens;
   if (!name) return { lines: [] };
 
   const run = lookup(implemented, name) ?? lookup(simulated, name);
-  if (run) return run(args);
+  if (run) return run(args, { cwd, history });
 
   if (HELP_COMMANDS.includes(name)) return { lines: [`${name}: this is not a real terminal you know...`], isError: true };
 

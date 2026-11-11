@@ -1,14 +1,20 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { runCommand } from './terminalCommands';
 
-const Prompt = () => (
+const ROOT = '/home/user';
+
+const Prompt = ({ cwd = ROOT }) => {
+  const path = cwd === ROOT ? '~' : `~/${cwd.slice(`${ROOT}/`.length)}`;
+
+  return (
   <span className="terminal-prompt" aria-hidden="true">
-    <span className="terminal-prompt-user">user@davidchicas.me</span>
+    <span className="terminal-prompt-user">terminal@davidchicas.me</span>
     {':'}
-    <span className="terminal-prompt-home">~</span>
+    <span className="terminal-prompt-home">{path}</span>
     {'$ '}
   </span>
-);
+  );
+};
 
 const renderLine = (line) => {
   if (!Array.isArray(line)) return line;
@@ -29,6 +35,7 @@ const FREEZE_MS = 4000;
 const Terminal = ({ onClose }) => {
   const [entries, setEntries] = useState([]);
   const [input, setInput] = useState('');
+  const [cwd, setCwd] = useState(ROOT);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [poweredOff, setPoweredOff] = useState(false);
@@ -95,14 +102,31 @@ const Terminal = ({ onClose }) => {
       cancelAnimationFrame(frameRef.current);
       frameRef.current = null;
     }
-    event.currentTarget.releasePointerCapture(event.pointerId);
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
     setOffset(drag.latest ?? { x: drag.originX, y: drag.originY });
     setIsDragging(false);
   };
 
   const timers = useRef([]);
 
-  useEffect(() => () => timers.current.forEach(clearTimeout), []);
+  useEffect(() => () => {
+    timers.current.forEach(clearTimeout);
+    if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+  }, []);
+
+  useEffect(() => {
+    const bodyOverflow = document.body.style.overflow;
+    const documentOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = bodyOverflow;
+      document.documentElement.style.overflow = documentOverflow;
+    };
+  }, []);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -120,18 +144,21 @@ const Terminal = ({ onClose }) => {
     }
   }, [input]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const result = runCommand(input);
-    if (input.trim()) {
-      history.current.push(input);
+  const executeCommand = (command) => {
+    if (!command.trim()) {
+      setInput('');
+      return;
     }
+
+    history.current.push(command);
+    const commandCwd = cwd;
+    const result = runCommand(command, { cwd, history: history.current });
     historyIndex.current = null;
 
     if (result.openUrl) {
       window.open(result.openUrl, '_blank', 'noopener');
     }
+    if (result.cwd) setCwd(result.cwd);
     if (result.powerOff) {
       timers.current.push(setTimeout(() => setPoweredOff(true), 1500));
     }
@@ -144,7 +171,8 @@ const Terminal = ({ onClose }) => {
         ...previous,
         {
           id,
-          command: input,
+          command,
+          cwd: commandCwd,
           lines,
           isError: result.isError === true,
           shown: result.crash ? 0 : lines.length,
@@ -175,7 +203,24 @@ const Terminal = ({ onClose }) => {
     setInput('');
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    executeCommand(input);
+  };
+
   const handleKeyDown = (event) => {
+    if (event.ctrlKey && event.key.toLowerCase() === 'l') {
+      event.preventDefault();
+      setEntries([]);
+      setInput('');
+      return;
+    }
+    if (event.ctrlKey && event.key.toLowerCase() === 'c') {
+      event.preventDefault();
+      setInput('');
+      return;
+    }
+
     const past = history.current;
     if (event.key === 'ArrowUp' && past.length > 0) {
       event.preventDefault();
@@ -194,6 +239,29 @@ const Terminal = ({ onClose }) => {
     }
   };
 
+  const handleDialogKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      onClose();
+      return;
+    }
+    if (event.key !== 'Tab') return;
+
+    const focusable = windowRef.current?.querySelectorAll(
+      'button:not([disabled]), input:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusable?.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
 
   if (poweredOff) {
     return (
@@ -210,9 +278,11 @@ const Terminal = ({ onClose }) => {
         ref={windowRef}
         className={isDragging ? 'terminal-window is-dragging' : 'terminal-window'}
         role="dialog"
-        aria-label="terminal"
+        aria-label="David Chicas interactive terminal"
+        aria-modal="true"
         style={{ transform: `translate(${offset.x}px, ${offset.y}px)` }}
         onClick={() => inputRef.current?.focus()}
+        onKeyDown={handleDialogKeyDown}
       >
         <div
           className="terminal-header"
@@ -222,7 +292,7 @@ const Terminal = ({ onClose }) => {
           onPointerCancel={handleDragEnd}
         >
           <span aria-hidden="true" />
-          <span className="terminal-title">user@davidchicas.me: ~</span>
+          <span className="terminal-title">terminal@davidchicas.me: ~</span>
           <button type="button" className="terminal-close" onClick={onClose} aria-label="close terminal">
             &times;
           </button>
@@ -230,11 +300,23 @@ const Terminal = ({ onClose }) => {
 
         <div className="terminal-body" ref={logRef}>
           <div className="terminal-log" role="log" aria-live="polite">
+            <section className="terminal-welcome" aria-label="Terminal welcome">
+              <p>explore a little more about me, my projects, and how to get in touch, this terminal also will run certain commands you type</p>
+              <div className="terminal-welcome-gap" aria-hidden="true" />
+              <p className="terminal-welcome-hint">
+                type <code>help</code>, <code>ls</code>, or <code>cat about.txt</code> to get started;
+                use <code>cd projects</code> to explore a directory
+              </p>          
+              <div className="terminal-welcome-gap" aria-hidden="true" />
+              <p className="terminal-mobile-note">
+                for the best experience, use this terminal on a desktop browser
+              </p>
+            </section>
             {entries.map((entry) => (
               <div className="terminal-entry" key={entry.id}>
                 <p className="terminal-line">
-                  <Prompt />
-                  {entry.command}
+                  <Prompt cwd={entry.cwd} />
+                  <span className="terminal-command">{entry.command}</span>
                 </p>
                 {entry.lines.slice(0, entry.shown).map((line, lineIndex) => (
                   <p
@@ -249,7 +331,7 @@ const Terminal = ({ onClose }) => {
           </div>
 
           <form className="terminal-input-line" onSubmit={handleSubmit}>
-            <Prompt />
+            <Prompt cwd={cwd} />
             <div className="terminal-input-field">
               <span className="terminal-input-text" ref={mirrorRef} aria-hidden="true">
                 {input}

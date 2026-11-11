@@ -384,8 +384,8 @@
 .terminal-window {
   display: flex;
   flex-direction: column;
-  width: min(100%, 760px);
-  height: min(70vh, 520px);
+  width: min(100%, 836px);
+  height: min(77vh, 572px);
   border: 1px solid #3c3c3c;
   border-radius: 8px;
   background: var(--night);
@@ -464,12 +464,38 @@
   min-height: 0;
   padding: 12px 16px;
   overflow-y: auto;
+  overscroll-behavior: contain;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
 
 .terminal-log {
   margin: 0;
+}
+
+.terminal-welcome {
+  margin-bottom: 12px;
+}
+
+.terminal-welcome p {
+  margin: 0;
+}
+
+.terminal-welcome-gap {
+  height: 0.825em;
+}
+
+.terminal-welcome-hint code {
+  color: #e8c47a;
+  font: inherit;
+}
+
+.terminal-mobile-note {
+  display: none;
+}
+
+.terminal-command {
+  color: var(--text);
 }
 
 .terminal-entry {
@@ -556,6 +582,8 @@
   inset: 0;
 }
 
+
+
 .not-found-content {
   display: flex;
   min-height: 100vh;
@@ -602,6 +630,7 @@
   .not-found-cursor {
     animation: none;
   }
+
 }
 
 @media (max-width: 540px) {
@@ -661,6 +690,10 @@
     display: block;
     font-size: 7px;
     text-align: center;
+  }
+
+  .terminal-mobile-note {
+    display: block;
   }
 
   .text-section {

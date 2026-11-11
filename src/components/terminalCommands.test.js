@@ -7,7 +7,7 @@ describe('runCommand', () => {
   });
 
   it('answers whoami and pwd', () => {
-    expect(runCommand('whoami').lines).toEqual(['user']);
+    expect(runCommand('whoami').lines).toEqual(['david']);
     expect(runCommand('pwd').lines).toEqual(['/home/user']);
   });
 
@@ -15,24 +15,28 @@ describe('runCommand', () => {
     expect(runCommand('clear')).toEqual({ lines: [], clear: true });
   });
 
-  it('lists every command in help, including the ones not implemented', () => {
+  it('lists commands with implemented or simulated behavior', () => {
     const [heading, ...rows] = runCommand('help').lines;
     const listed = rows.join(' ').split(/\s+/);
 
     expect(heading).toBe('available commands:');
-    expect(listed).toEqual(expect.arrayContaining(['ls', 'wget', 'passwd', 'killall']));
+    expect(listed).toEqual(expect.arrayContaining(['ls', 'cat', 'chmod', 'resume']));
+    ['wget', 'passwd', 'killall', 'grep'].forEach((command) => {
+      expect(listed).not.toContain(command);
+    });
   });
 
-  it('lists the joke commands in help', () => {
+  it('lists the implemented joke commands in help', () => {
     const listed = runCommand('help').lines.slice(1).join(' ').split(/\s+/);
     expect(listed).toEqual(expect.arrayContaining(['help', 'nanofetch', 'forkbomb', 'shutdown']));
   });
 
-  it('shows a joke line in red for listed commands that are not implemented', () => {
+  it('keeps playful responses available for unsupported commands without advertising them', () => {
     expect(runCommand('wget example.com')).toEqual({
       lines: ['wget: this is not a real terminal you know...'],
       isError: true,
     });
+    expect(runCommand('help').lines.join(' ')).not.toContain('wget');
   });
 
   it('reports unknown commands like a real terminal', () => {
@@ -53,10 +57,45 @@ describe('runCommand', () => {
     });
   });
 
-  it('shows information for the names listed by ls', () => {
-    expect(runCommand('cd about').lines[0]).toMatch(/strong data automation/);
-    expect(runCommand('cd projects').lines).toContain('- genrify: spotify playlist generator that builds playlists');
-    expect(runCommand('cd contact').lines).toContain('- email: contact@davidchicas.me');
+  it('changes and reports the virtual working directory', () => {
+    expect(runCommand('cd about')).toEqual({ lines: [], cwd: '/home/user/about' });
+    expect(runCommand('pwd', { cwd: '/home/user/about' }).lines).toEqual(['/home/user/about']);
+    expect(runCommand('cd ..', { cwd: '/home/user/projects' })).toEqual({
+      lines: [],
+      cwd: '/home/user',
+    });
+    expect(runCommand('cd ../../..', { cwd: '/home/user/projects' })).toEqual({
+      lines: [],
+      cwd: '/home/user',
+    });
+  });
+
+  it('lists the virtual files and reads the portfolio content', () => {
+    expect(runCommand('ls').lines).toEqual(['about/  contact/  projects/  resume.pdf']);
+    expect(runCommand('ls /').lines).toEqual(['about/  contact/  projects/  resume.pdf']);
+    expect(runCommand('cat projects.txt').lines).toContain(
+      '- genrify: spotify playlist generator that builds playlists'
+    );
+    expect(runCommand('cat contact/contact.txt').lines).toContain('- email: contact@davidchicas.me');
+    expect(runCommand('cat about.txt', { cwd: '/home/user/about' }).lines[0])
+      .toMatch(/strong data automation/);
+    expect(runCommand('cat ~/about.txt').lines[0]).toMatch(/strong data automation/);
+  });
+
+  it('parses quoted arguments and reports an unmatched quote', () => {
+    expect(runCommand('echo "hello   there"')).toEqual({ lines: ['hello   there'] });
+    expect(runCommand("echo 'hello there")).toEqual({
+      lines: ['syntax error: unmatched quote'],
+      isError: true,
+    });
+  });
+
+  it('shows the command history', () => {
+    expect(runCommand('history', { history: ['pwd', 'ls', 'history'] }).lines).toEqual([
+      '1  pwd',
+      '2  ls',
+      '3  history',
+    ]);
   });
 
   it('opens the resume in a new page instead of printing', () => {
@@ -117,10 +156,10 @@ describe('runCommand', () => {
 
     expect(lines).toHaveLength(13);
     expect(text(lines[0])).toContain('____     ____');
-    expect(text(lines[0])).toContain('user@davidchicas.me');
+    expect(text(lines[0])).toContain('terminal@davidchicas.me');
     expect(text(lines[2])).toContain('OS: Arch Linux x86_64');
     expect(lines[0][0]).toEqual({ text: expect.stringContaining('____'), accent: true });
-    expect(lines[0]).toContainEqual({ text: 'user@davidchicas.me', label: true });
+    expect(lines[0]).toContainEqual({ text: 'terminal@davidchicas.me', label: true });
     expect(lines[2]).toContainEqual({ text: 'OS:', label: true });
   });
 });
