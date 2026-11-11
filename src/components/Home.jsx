@@ -82,7 +82,10 @@ const Home = () => {
         const widestLine = Math.max(...lines.map((line) => line.length));
         const widthFit = availableWidth / (widestLine * 0.7);
         const heightFit = availableHeight / (lines.length * 1.08);
-        return Math.min(8, widthFit, heightFit);
+        const fitSize = Math.min(8, widthFit, heightFit);
+        return window.innerWidth > 540 && fitSize >= 7
+          ? Math.max(fitSize, 7.5)
+          : fitSize;
       });
 
       setArtFontSizes((current) => {
