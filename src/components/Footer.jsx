@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <footer className="footer" role="contentinfo">
       <p className="project-links">
-        <a href="#" ref={triggerRef} onClick={openTerminal} aria-haspopup="dialog">open terminal</a>
+        <a href="#" ref={triggerRef} onClick={openTerminal} aria-haspopup="dialog">OPEN TERMINAL</a>
       </p>
       {isTerminalOpen && createPortal(<Terminal onClose={closeTerminal} />, document.body)}
       <a className="footer-icon" aria-label="Repository information" href="https://github.com/dchicasduena/davidchicas.me" target="_blank" rel="noopener noreferrer">

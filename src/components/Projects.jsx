@@ -3,53 +3,53 @@ import React from 'react';
 const projects = [
   {
     id: 'tfmm',
-    name: 'thirty five mm',
-    description: 'a portfolio of photographs, mostly shot on 35mm film, and a place to practice building for the web',
-    details: 'bootstrap, html, css, github pages, 35mm photography',
-    links: [{ label: 'visit the site', href: 'https://dchicasduena.github.io/thirty-five-mm/' }],
+    name: 'Thirty Five mm',
+    description: 'Portfolio of photographs, mostly shot on 35mm film, and a place to practice building for the web',
+    details: 'Bootstrap, HTML, CSS, GitHub pages, 35mm photography',
+    links: [{ label: 'VISIT THE SITE', href: 'https://dchicasduena.github.io/thirty-five-mm/' }],
   },
   {
     id: 'genrify',
-    name: 'genrify',
-    description: 'a spotify playlist generator that builds playlists from music genres and sub-genres',
-    details: 'spotify api, node.js, mongodb, bootstrap, mvc architecture',
+    name: 'Genrify',
+    description: 'Spotify playlist generator that builds playlists from music genres and sub-genres',
+    details: 'Spotify API, Node.js, MongoDB, Bootstrap, MVC architecture',
     links: [
-      { label: 'open the app', href: 'https://genrify-app.herokuapp.com' },
-      { label: 'source code', href: 'https://github.com/dchicasduena/genrify' },
+      { label: 'OPEN THE APP', href: 'https://genrify-app.herokuapp.com' },
+      { label: 'SOURCE CODE', href: 'https://github.com/dchicasduena/genrify' },
     ],
   },
   {
     id: 'automata',
-    name: 'automata',
-    description: 'a discord bot built for the memorial university computer science society',
-    details: 'discord api, python, docker',
+    name: 'Automata',
+    description: 'Discord bot built for the Memorial University Computer Science Society',
+    details: 'Discord API, Python, Docker',
     links: [
-        { label: 'source code', href: 'https://github.com/MUNComputerScienceSociety/Automata' }
+        { label: 'SOURCE CODE', href: 'https://github.com/MUNComputerScienceSociety/Automata' }
     ],
   },
   {
     id: 'sandwich',
-    name: 'sandwich repository',
-    description: 'a small place to collect and revisit recipes',
-    details: 'jekyll and github pages',
+    name: 'Sandwich Repository',
+    description: 'Small place to collect and revisit recipes',
+    details: 'Jekyll and GitHub pages',
     links: [
-        { label: 'visit the site', href: 'https://dchicasduena.github.io/sandwich-repository/' }]
+        { label: 'VISIT THE SITE', href: 'https://dchicasduena.github.io/sandwich-repository/' }]
   },
   {
     id: 'cardbinder',
-    name: 'card binder',
-    description: 'this has been deprecated as the api is no longer available. arrange a pokémon tcg binder, search cards by name or set, then download an image of the finished page',
-    details: 'react, pokémon tcg api',
+    name: 'Card Binder',
+    description: 'This has been deprecated as the API is no longer available. Arrange a Pokémon TCG binder, search cards by name or set, then download an image of the finished page',
+    details: 'React, Pokémon TCG API',
     links: [
-      { label: 'open the app', href: 'https://card-binder.netlify.app/' },
-      { label: 'source code', href: 'https://github.com/dchicasduena/card.binder' },
+      { label: 'OPEN THE APP', href: 'https://card-binder.netlify.app/' },
+      { label: 'SOURCE CODE', href: 'https://github.com/dchicasduena/card.binder' },
     ],
   },
 ];
 
 const Projects = () => (
   <section id="projects" className="text-section">
-    <h2 className="section-title">projects</h2>
+    <h2 className="section-title">PROJECTS</h2>
     <div className="project-list">
       {projects.map((project) => (
         <article className="project-entry" id={`project-${project.id}`} key={project.id}>
@@ -58,7 +58,7 @@ const Projects = () => (
             {project.name}
           </p>
           <p><span className="project-number">&gt;</span>{' '}{project.description}</p>
-          <p className="project-details"><span className="detail-label">tools:</span>{project.details}</p>
+          <p className="project-details"><span className="detail-label">Tools:</span>{project.details}</p>
           {project.links?.length > 0 && (
             <p className="project-links">
               {project.links.map((link) => (

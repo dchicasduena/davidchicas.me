@@ -149,9 +149,9 @@ const Home = () => {
       <header className="masthead" id="home">
         <nav className="section-nav" aria-label="Page sections">
           <div className="section-links">
-            <a href="#about">about</a>
-            <a href="#projects">projects</a>
-            <a href="#contact">contact</a>
+            <a href="#about">ABOUT</a>
+            <a href="#projects">PROJECTS</a>
+            <a href="#contact">CONTACT</a>
           </div>
 
           <div className="social-links" aria-label="External links">
@@ -197,7 +197,7 @@ const Home = () => {
           </pre>
         </div>
         <p className="intro-detail">
-          <span className="project-number">&gt;</span>{' '}software developer in newfoundland, canada. here are some of my projects, some information about me,
+          <span className="project-number">&gt;</span>{' '}Software developer in Newfoundland, Canada. Here are some of my projects, some information about me,
           and a couple ways to get in touch{' '}
         </p>
       </section>

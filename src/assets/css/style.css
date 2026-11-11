@@ -1,5 +1,5 @@
 html {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Inconsolata", monospace;
   font-weight: 800;
 }
 
@@ -35,7 +35,7 @@ h4,
 h5,
 h6,
 .font-heading {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inconsolata', monospace;
 }
 
 .section {
@@ -120,7 +120,7 @@ h6,
   margin-top: 5px;
   transition: 0.3s all ease;
   padding: 1rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: '', sans-serif;
 
 }
 

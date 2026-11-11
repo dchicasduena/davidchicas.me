@@ -92,7 +92,7 @@
 }
 
 .section-links a {
-  font-size: var(--font-heading-minus-two);
+  font-size: var(--font-copy);
 }
 
 .eyebrow,
@@ -191,7 +191,7 @@
 .section-title,
 .project-entry .project-name {
   margin: 0 0 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Inconsolata", monospace;
   font-size: var(--font-heading);
   font-weight: 600;
   line-height: 1.65;
@@ -310,6 +310,11 @@
 
 .footer a {
   color: inherit;
+}
+
+.footer a:hover,
+.footer a:focus-visible {
+  color: var(--purple);
 }
 
 .footer .project-links {
