@@ -83,8 +83,8 @@ const Home = () => {
         const widthFit = availableWidth / (widestLine * 0.7);
         const heightFit = availableHeight / (lines.length * 1.08);
         const fitSize = Math.min(8, widthFit, heightFit);
-        return window.innerWidth > 540 && fitSize >= 7
-          ? Math.max(fitSize, 7.5)
+        return window.innerWidth > 540 && fitSize >= 10
+          ? Math.max(fitSize, 10)
           : fitSize;
       });
 
