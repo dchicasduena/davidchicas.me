@@ -4,6 +4,9 @@ const ART_PATH = '/assets/ascii-art/david-chicas.txt';
 const MOBILE_ART_PATH = '/assets/ascii-art/david-chicas-mobile.txt';
 const FALLBACK_ART = 'DAVID CHICAS';
 
+const getPrefersReducedMotion = () =>
+  window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+
 const shuffleArtFrames = (frames, previousFrame) => {
   const shuffledFrames = [...frames];
 
@@ -29,7 +32,17 @@ const Home = () => {
   const [visibleColumns, setVisibleColumns] = useState(0);
   const [animationPhase, setAnimationPhase] = useState('typing');
   const [artFontSizes, setArtFontSizes] = useState([8]);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(getPrefersReducedMotion);
   const titleRef = useRef(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    if (!mediaQuery) return undefined;
+
+    const updatePreference = (event) => setPrefersReducedMotion(event.matches);
+    mediaQuery.addEventListener?.('change', updatePreference);
+    return () => mediaQuery.removeEventListener?.('change', updatePreference);
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -113,6 +126,11 @@ const Home = () => {
     const frameWidth = Math.max(...frame.split('\n').map((line) => line.length));
     let timer;
 
+    if (prefersReducedMotion) {
+      setVisibleColumns(frameWidth);
+      return undefined;
+    }
+
     if (animationPhase === 'typing') {
       if (visibleColumns >= frameWidth) {
         timer = setTimeout(() => setAnimationPhase('holding'), 180);
@@ -142,7 +160,7 @@ const Home = () => {
     }
 
     return () => clearTimeout(timer);
-  }, [animationPhase, artFrames, artIndex, visibleColumns]);
+  }, [animationPhase, artFrames, artIndex, prefersReducedMotion, visibleColumns]);
 
   const frameLines = (artFrames[artIndex] || '').split('\n');
   const visibleArt = frameLines.map((line) => line.slice(0, visibleColumns)).join('\n');

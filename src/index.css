@@ -6,6 +6,7 @@
   --font-heading: 24px;
   --font-copy: 22px;
   --font-link: 20px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 * {
@@ -72,6 +73,11 @@ a:focus-visible {
   text-decoration: none;
 }
 
+a:focus-visible,
+button:focus-visible {
+  outline: none;
+}
+
 ::selection {
   background: var(--text);
   color: var(--night);
@@ -82,7 +88,8 @@ a:focus-visible {
     scroll-behavior: auto;
   }
 
-  .intro-detail::after {
+  .intro-detail::after,
+  .terminal-input-cursor {
     animation: none;
   }
 }
