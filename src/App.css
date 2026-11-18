@@ -143,9 +143,10 @@
 .introduction-title {
   position: relative;
   max-width: 100%;
-  height: 140px;
+  height: 148px;
   overflow: hidden;
   margin: 0 0 12px;
+  padding-top: 8px;
   color: var(--text);
   font-size: 38px;
   font-weight: 600;
@@ -180,6 +181,20 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 140ms var(--ease-out);
+  mask-image: radial-gradient(
+    circle var(--ascii-radius, 0)
+    at var(--ascii-pointer-x, 0) var(--ascii-pointer-y, 0),
+    #000 0%,
+    #000 88%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle var(--ascii-radius, 0)
+    at var(--ascii-pointer-x, 0) var(--ascii-pointer-y, 0),
+    #000 0%,
+    #000 88%,
+    transparent 100%
+  );
 }
 
 .ascii-title-highlight > span {
@@ -189,20 +204,6 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  mask-image: radial-gradient(
-    ellipse var(--ascii-radius-x, 0) var(--ascii-radius-y, 0)
-    at var(--ascii-pointer-x, 0) var(--ascii-pointer-y, 0),
-    #000 0%,
-    #000 88%,
-    transparent 100%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse var(--ascii-radius-x, 0) var(--ascii-radius-y, 0)
-    at var(--ascii-pointer-x, 0) var(--ascii-pointer-y, 0),
-    #000 0%,
-    #000 88%,
-    transparent 100%
-  );
 }
 
 .ascii-title-highlight.is-active {
@@ -763,6 +764,7 @@
 
   .introduction-title {
     height: 76px;
+    padding-top: 0;
   }
 
   .ascii-title {

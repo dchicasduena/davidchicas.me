@@ -37,6 +37,7 @@ const Home = () => {
   const [isAsciiHighlightActive, setIsAsciiHighlightActive] = useState(false);
   const titleRef = useRef(null);
   const artRef = useRef(null);
+  const highlightRef = useRef(null);
   const asciiHighlightActiveRef = useRef(false);
   const measureContextRef = useRef(null);
   const pointerFrameRef = useRef(null);
@@ -111,17 +112,31 @@ const Home = () => {
 
     const updateSizing = () => {
       const availableWidth = title.clientWidth || 820;
-      const availableHeight = (title.clientHeight || 140) - 4;
-      const fontSizes = artFrames.map((frame) => {
+      const titleStyle = window.getComputedStyle(title);
+      const topPadding = Number.parseFloat(titleStyle.paddingTop) || 0;
+      const availableHeight = (title.clientHeight || 148) - topPadding - 4;
+      const frameDimensions = artFrames.map((frame) => {
         const lines = frame.split('\n');
-        const widestLine = Math.max(...lines.map((line) => line.length));
-        const widthFit = availableWidth / (widestLine * 0.7);
-        const heightFit = availableHeight / (lines.length * 1.08);
-        const fitSize = Math.min(8, widthFit, heightFit);
-        return window.innerWidth > 540 && fitSize >= 10
-          ? Math.max(fitSize, 10)
-          : fitSize;
+        return {
+          lineCount: lines.length,
+          widestLine: Math.max(...lines.map((line) => line.length)),
+        };
       });
+      const largestFrame = frameDimensions.reduce((largest, frame) =>
+        frame.lineCount * frame.widestLine > largest.lineCount * largest.widestLine
+          ? frame
+          : largest
+      );
+      const largestFrameFontSize = Math.min(
+        availableWidth / (largestFrame.widestLine * 0.7),
+        availableHeight / (largestFrame.lineCount * 1.08)
+      );
+      const maxArtWidth = largestFrame.widestLine * largestFrameFontSize * 0.7;
+      const maxArtHeight = largestFrame.lineCount * largestFrameFontSize * 1.08;
+      const fontSizes = frameDimensions.map(({ lineCount, widestLine }) => Math.min(
+        maxArtWidth / (widestLine * 0.7),
+        maxArtHeight / (lineCount * 1.08)
+      ));
 
       setArtFontSizes((current) => {
         if (current.length === fontSizes.length &&
@@ -209,31 +224,24 @@ const Home = () => {
     const context = measureContextRef.current;
     if (context) context.font = `${styles.fontWeight} ${fontSize}px ${styles.fontFamily}`;
     const characterWidth = context?.measureText('M').width || fontSize * 0.6;
-    const computedLineHeight = Number.parseFloat(styles.lineHeight);
-    const lineHeight = Number.isFinite(computedLineHeight)
-      ? styles.lineHeight.endsWith('px')
-        ? computedLineHeight
-        : fontSize * computedLineHeight
-      : fontSize * 1.08;
 
     updateAsciiHighlight(true);
+    const highlightBounds = highlightRef.current.getBoundingClientRect();
     pendingPointerRef.current = {
-      x,
-      y,
-      radiusX: characterWidth * ASCII_HIGHLIGHT_RADIUS,
-      radiusY: lineHeight * ASCII_HIGHLIGHT_RADIUS,
+      x: event.clientX - highlightBounds.left,
+      y: event.clientY - highlightBounds.top,
+      radius: characterWidth * ASCII_HIGHLIGHT_RADIUS,
     };
 
     if (pointerFrameRef.current === null) {
       pointerFrameRef.current = window.requestAnimationFrame(() => {
         pointerFrameRef.current = null;
         const pointer = pendingPointerRef.current;
-        if (!pointer || !artRef.current) return;
+        if (!pointer || !highlightRef.current) return;
 
-        artRef.current.style.setProperty('--ascii-pointer-x', `${pointer.x}px`);
-        artRef.current.style.setProperty('--ascii-pointer-y', `${pointer.y}px`);
-        artRef.current.style.setProperty('--ascii-radius-x', `${pointer.radiusX}px`);
-        artRef.current.style.setProperty('--ascii-radius-y', `${pointer.radiusY}px`);
+        highlightRef.current.style.setProperty('--ascii-pointer-x', `${pointer.x}px`);
+        highlightRef.current.style.setProperty('--ascii-pointer-y', `${pointer.y}px`);
+        highlightRef.current.style.setProperty('--ascii-radius', `${pointer.radius}px`);
       });
     }
   };
@@ -290,7 +298,11 @@ const Home = () => {
           <pre className="ascii-title" aria-hidden="true">
             <span className="ascii-title-art" style={{ fontSize: `${artFontSizes[artIndex] || 8}px` }}>{visibleArt}</span>
           </pre>
-          <pre className={`ascii-title ascii-title-highlight${isAsciiHighlightActive ? ' is-active' : ''}`} aria-hidden="true">
+          <pre
+            ref={highlightRef}
+            className={`ascii-title ascii-title-highlight${isAsciiHighlightActive ? ' is-active' : ''}`}
+            aria-hidden="true"
+          >
             <span
               ref={artRef}
               className="ascii-title-art"
