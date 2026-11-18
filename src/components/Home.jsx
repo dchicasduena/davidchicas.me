@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { ButtonLink } from './ui/button';
 
 const ART_PATH = '/assets/ascii-art/david-chicas.txt';
 const MOBILE_ART_PATH = '/assets/ascii-art/david-chicas-mobile.txt';
@@ -266,33 +267,42 @@ const Home = () => {
       <header className="masthead" id="home">
         <nav className="section-nav" aria-label="Page sections">
           <div className="section-links">
-            <a href="#about">ABOUT</a>
-            <a href="#projects">PROJECTS</a>
-            <a href="#contact">CONTACT</a>
+            <ButtonLink className="legacy-link" size="sm" href="#about">ABOUT</ButtonLink>
+            <ButtonLink className="legacy-link" size="sm" href="#projects">PROJECTS</ButtonLink>
+            <ButtonLink className="legacy-link" size="sm" href="#contact">CONTACT</ButtonLink>
           </div>
 
           <div className="social-links" aria-label="External links">
-            <a aria-label="LinkedIn"
+            <ButtonLink className="legacy-link" size="icon-lg"
+              aria-label="LinkedIn"
               href="https://ca.linkedin.com/in/davidchicas"
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               <i className="fa-brands fa-linkedin" aria-hidden="true"></i>
-            </a>
-            <a aria-label="GitHub"
+            </ButtonLink>
+            <ButtonLink className="legacy-link" size="icon-lg"
+              aria-label="GitHub"
               href="https://github.com/dchicasduena"
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               <i className="fa-brands fa-github" aria-hidden="true"></i>
-            </a>
-            <a aria-label="Resume"
+            </ButtonLink>
+            <ButtonLink className="legacy-link" size="icon-lg"
+              aria-label="Resume"
               href="https://davidchicas.me/assets/resume.pdf"
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               <i className="fa-solid fa-file-lines" aria-hidden="true"></i>
-            </a>
-            <a aria-label="Email" href="mailto:contact@davidchicas.me">
+            </ButtonLink>
+            <ButtonLink className="legacy-link" size="icon-lg"
+              aria-label="Email"
+              href="mailto:contact@davidchicas.me"
+            >
               <i className="fa-solid fa-envelope" aria-hidden="true"></i>
-            </a>
+            </ButtonLink>
           </div>
         </nav>
       </header>

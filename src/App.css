@@ -129,6 +129,8 @@
 
 .section-links a:hover,
 .section-links a:focus-visible {
+  color: var(--purple);
+  text-shadow: 0 0 8px rgba(115, 134, 213, 0.5);
   text-decoration: underline;
 }
 
@@ -240,6 +242,62 @@
   scroll-margin-top: 24px;
 }
 
+.legacy-card,
+.legacy-card [data-slot="card-header"],
+.legacy-card [data-slot="card-content"],
+.legacy-card [data-slot="card-footer"] {
+  display: contents;
+}
+
+.legacy-card {
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+}
+
+.legacy-badge[data-slot="badge"] {
+  display: inline;
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  text-shadow: inherit;
+}
+
+.legacy-link[data-slot="button"] {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-shadow: inherit;
+  vertical-align: baseline;
+}
+
+.section-links .legacy-link[data-slot="button"] {
+  height: auto;
+  padding: 4px 0;
+  color: var(--purple);
+}
+
+.project-links .legacy-link[data-slot="button"],
+.contact-list .legacy-link[data-slot="button"] {
+  height: auto;
+  padding: 0;
+}
+
+.legacy-paragraph {
+  max-width: 690px;
+  margin: 0 0 10px;
+}
+
 .section-title,
 .project-entry .project-name {
   margin: 0 0 0;
@@ -294,8 +352,16 @@
   margin: 5px 0;
 }
 
+.project-description,
 .project-details {
+  margin: 5px 0;
+  color: var(--text);
   font-size: var(--font-copy);
+  line-height: 1.65;
+}
+
+.project-details {
+  line-height: 1.65;
 }
 
 .project-links {
@@ -314,6 +380,18 @@
 .project-links a::after {
   color: var(--purple);
   content: ' ]';
+}
+
+.project-entry .project-links a:hover,
+.project-entry .project-links a:focus-visible {
+  color: var(--purple);
+  text-shadow: 0 0 8px rgba(115, 134, 213, 0.5);
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  color: var(--purple);
+  text-shadow: 0 0 8px rgba(115, 134, 213, 0.5);
 }
 
 .contact-list {
@@ -354,6 +432,7 @@
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
+  justify-content: center;
   padding: 24px 0 0;
   color: var(--text);
   font-size: var(--font-copy);
@@ -376,6 +455,7 @@
 .footer-icon {
   grid-column: 3;
   justify-self: end;
+  padding: 8px 16px 8px 8px;
   text-align: right;
 }
 
@@ -479,7 +559,6 @@
   cursor: url('./assets/cursors/Alternate Select Light.cur'), pointer;
 }
 
-/* style.css sets `span:hover { cursor: pointer }`, which overrides inherited cursors on spans */
 .ascii-title span:hover,
 .terminal-window span:hover {
   cursor: url('./assets/cursors/Alternate Select Light.cur'), pointer;
@@ -717,6 +796,13 @@
 @media (max-width: 360px) {
   .not-found-art {
     font-size: 14px;
+  }
+}
+
+@media (max-width: 780px) {
+  .masthead {
+    display: flex;
+    padding: 1rem;
   }
 }
 

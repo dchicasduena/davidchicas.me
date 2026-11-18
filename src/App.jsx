@@ -7,12 +7,12 @@ import Home from './components/Home';
 import AboutMe from './components/AboutMe';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import { ButtonLink } from './components/ui/button';
 
 const legacyProjectRoutes = {
   '/tfmm': 'project-tfmm',
   '/genrify': 'project-genrify',
   '/cardbinder': 'project-cardbinder',
-  '/dclogo': 'project-dclogo',
   '/moreprojects': 'projects',
 };
 
@@ -92,7 +92,9 @@ const Portfolio = () => {
             Sorry something went wrong <span className="not-found-cursor" aria-hidden="true">_</span>
           </h1>
           <p className="project-links">
-            <a href="/">GO BACK</a>
+            <ButtonLink className="legacy-link" href="/">
+              GO BACK
+            </ButtonLink>
           </p>
         </main>
       </>

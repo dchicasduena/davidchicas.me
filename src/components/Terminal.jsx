@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { runCommand } from './terminalCommands';
+import { Button } from './ui/button';
 
 const ROOT = '/home/user';
 
@@ -293,9 +294,16 @@ const Terminal = ({ onClose }) => {
         >
           <span aria-hidden="true" />
           <span className="terminal-title">terminal@davidchicas.me: ~</span>
-          <button type="button" className="terminal-close" onClick={onClose} aria-label="close terminal">
+          <Button
+            type="button"
+            className="terminal-close"
+            variant="ghost"
+            size="icon"
+            onClick={onClose}
+            aria-label="Close terminal"
+          >
             &times;
-          </button>
+          </Button>
         </div>
 
         <div className="terminal-body" ref={logRef}>

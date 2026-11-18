@@ -1,3 +1,55 @@
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import 'shadcn/tailwind.css';
+
+:root {
+  --background: #161616;
+  --foreground: #e9e9e9;
+  --card: #1c1c1c;
+  --card-foreground: #e9e9e9;
+  --popover: #1c1c1c;
+  --popover-foreground: #e9e9e9;
+  --primary: #7386d5;
+  --primary-foreground: #161616;
+  --secondary: #2b2b2b;
+  --secondary-foreground: #e9e9e9;
+  --muted: #2b2b2b;
+  --muted-foreground: #a4a4a4;
+  --accent: #2b2b2b;
+  --accent-foreground: #e9e9e9;
+  --destructive: #e88b8b;
+  --border: #3c3c3c;
+  --input: #3c3c3c;
+  --ring: #7386d5;
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-mono: 'Inconsolata', Consolas, Monaco, 'Courier New', monospace;
+}
+
 :root {
   color-scheme: dark;
   --night: #161616;
@@ -30,6 +82,7 @@ body {
   color: var(--text);
   font-family: 'Inconsolata', Consolas, Monaco, 'Courier New', monospace;
   font-size: var(--font-copy);
+  font-weight: 400;
   line-height: 1.65;
   text-shadow: 0 0 5px rgba(252, 252, 250, 0.14);
   -webkit-font-smoothing: antialiased;

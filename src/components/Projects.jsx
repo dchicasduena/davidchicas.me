@@ -1,4 +1,14 @@
 import React from 'react';
+import { Badge } from './ui/badge';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from './ui/card';
+import { ButtonLink } from './ui/button';
 
 const projects = [
   {
@@ -24,7 +34,7 @@ const projects = [
     description: 'Discord bot built for the Memorial University Computer Science Society',
     details: 'Discord API, Python, Docker',
     links: [
-        { label: 'SOURCE CODE', href: 'https://github.com/MUNComputerScienceSociety/Automata' }
+      { label: 'SOURCE CODE', href: 'https://github.com/MUNComputerScienceSociety/Automata' },
     ],
   },
   {
@@ -33,7 +43,8 @@ const projects = [
     description: 'Small place to collect and revisit recipes',
     details: 'Jekyll and GitHub pages',
     links: [
-        { label: 'VISIT THE SITE', href: 'https://dchicasduena.github.io/sandwich-repository/' }]
+      { label: 'VISIT THE SITE', href: 'https://dchicasduena.github.io/sandwich-repository/' },
+    ],
   },
   {
     id: 'cardbinder',
@@ -53,21 +64,40 @@ const Projects = () => (
     <div className="project-list">
       {projects.map((project) => (
         <article className="project-entry" id={`project-${project.id}`} key={project.id}>
-          <p className="project-name">
-            <span className="project-number"></span>{' '}
-            {project.name}
-          </p>
-          <p><span className="project-number">&gt;</span>{' '}{project.description}</p>
-          <p className="project-details"><span className="detail-label">Tools:</span>{project.details}</p>
-          {project.links?.length > 0 && (
-            <p className="project-links">
-              {project.links.map((link) => (
-                <a href={link.href} key={`${link.label}:${link.href}`} target="_blank" rel="noopener noreferrer">
-                  {link.label}
-                </a>
-              ))}
-            </p>
-          )}
+          <Card className="legacy-card">
+            <CardHeader className="legacy-card-header">
+              <CardTitle as="h3" className="project-name">
+                {project.name}
+              </CardTitle>
+              <CardDescription className="project-description">
+                <span className="project-number">&gt;</span>{' '}{project.description}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="legacy-card-content">
+              <p className="project-details">
+                <Badge variant="ghost" className="legacy-badge detail-label">Tools:</Badge>
+                {project.details}
+              </p>
+            </CardContent>
+            {project.links?.length > 0 && (
+              <CardFooter className="legacy-card-footer">
+                <p className="project-links">
+                  {project.links.map((link) => (
+                    <ButtonLink
+                      size="sm"
+                      className="legacy-link"
+                      key={`${link.label}:${link.href}`}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.label}
+                    </ButtonLink>
+                  ))}
+                </p>
+              </CardFooter>
+            )}
+          </Card>
         </article>
       ))}
     </div>
