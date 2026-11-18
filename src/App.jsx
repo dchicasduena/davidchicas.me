@@ -7,6 +7,7 @@ import Home from './components/Home';
 import AboutMe from './components/AboutMe';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import NotFoundArt from './components/NotFoundArt';
 import { ButtonLink } from './components/ui/button';
 
 const legacyProjectRoutes = {
@@ -87,7 +88,7 @@ const Portfolio = () => {
       <>
         <div className="crt-screen-effects" aria-hidden="true" />
         <main className="App not-found-content">
-          <pre className="not-found-art" aria-hidden="true">{notFoundArt}</pre>
+          <NotFoundArt art={notFoundArt} />
           <h1 className="not-found-title">
             Sorry something went wrong <span className="not-found-cursor" aria-hidden="true">_</span>
           </h1>

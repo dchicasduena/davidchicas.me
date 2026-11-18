@@ -724,14 +724,42 @@
   text-align: center;
 }
 
+.not-found-art-wrap {
+  position: relative;
+  max-width: 100%;
+  margin-bottom: 18px;
+}
+
 .not-found-art {
   max-width: 100%;
-  margin: 0 0 18px;
+  margin: 0;
   overflow: hidden;
   color: var(--text);
   font-size: var(--font-copy);
   line-height: 1.2;
   white-space: pre;
+  cursor: url('./assets/cursors/Alternate Select Light.cur'), pointer;
+}
+
+.not-found-art-highlight {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 140ms var(--ease-out);
+}
+
+.not-found-art-highlight.is-active {
+  opacity: 1;
+}
+
+.not-found-art-highlight .ascii-highlight-character {
+  color: transparent;
+}
+
+.not-found-art-highlight .ascii-highlight-character.is-highlighted {
+  color: var(--purple);
+  text-shadow: 0 0 8px rgba(115, 134, 213, 0.5);
 }
 
 .not-found-title {
@@ -750,6 +778,12 @@
 
 .not-found-content > .project-links {
   align-self: center;
+}
+
+.not-found-content .project-links a:hover,
+.not-found-content .project-links a:focus-visible {
+  color: var(--purple);
+  text-shadow: 0 0 8px rgba(115, 134, 213, 0.5);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -788,14 +822,22 @@
 }
 
 @media (max-width: 540px) {
-  .not-found-art {
+  .not-found-art,
+  .not-found-art-highlight {
     font-size: 16px;
   }
 }
 
 @media (max-width: 360px) {
-  .not-found-art {
+  .not-found-art,
+  .not-found-art-highlight {
     font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .not-found-art-highlight {
+    display: none;
   }
 }
 
