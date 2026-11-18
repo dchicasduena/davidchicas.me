@@ -181,29 +181,20 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 140ms var(--ease-out);
-  mask-image: radial-gradient(
-    circle var(--ascii-radius, 0)
-    at var(--ascii-pointer-x, 0) var(--ascii-pointer-y, 0),
-    #000 0%,
-    #000 88%,
-    transparent 100%
-  );
-  -webkit-mask-image: radial-gradient(
-    circle var(--ascii-radius, 0)
-    at var(--ascii-pointer-x, 0) var(--ascii-pointer-y, 0),
-    #000 0%,
-    #000 88%,
-    transparent 100%
-  );
 }
 
-.ascii-title-highlight > span {
+.ascii-title-highlight > .ascii-title-art {
   color: transparent;
   text-shadow: none;
-  background: var(--purple);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+}
+
+.ascii-highlight-character {
+  color: transparent;
+}
+
+.ascii-highlight-character.is-highlighted {
+  color: var(--purple);
+  text-shadow: 0 0 8px rgba(115, 134, 213, 0.5);
 }
 
 .ascii-title-highlight.is-active {

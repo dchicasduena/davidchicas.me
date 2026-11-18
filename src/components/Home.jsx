@@ -36,10 +36,12 @@ const Home = () => {
   const [artFontSizes, setArtFontSizes] = useState([8]);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(getPrefersReducedMotion);
   const [isAsciiHighlightActive, setIsAsciiHighlightActive] = useState(false);
+  const [asciiPointerCell, setAsciiPointerCell] = useState(null);
   const titleRef = useRef(null);
   const artRef = useRef(null);
   const highlightRef = useRef(null);
   const asciiHighlightActiveRef = useRef(false);
+  const asciiPointerCellRef = useRef(null);
   const measureContextRef = useRef(null);
   const pointerFrameRef = useRef(null);
   const pendingPointerRef = useRef(null);
@@ -221,6 +223,7 @@ const Home = () => {
 
     const styles = window.getComputedStyle(art);
     const fontSize = Number.parseFloat(styles.fontSize);
+    const lineHeight = Number.parseFloat(styles.lineHeight) || fontSize * 1.08;
     if (!measureContextRef.current) {
       measureContextRef.current = document.createElement('canvas').getContext('2d');
     }
@@ -230,11 +233,9 @@ const Home = () => {
     const characterWidth = context?.measureText('M').width || fontSize * 0.6;
 
     updateAsciiHighlight(true);
-    const highlightBounds = highlightRef.current.getBoundingClientRect();
     pendingPointerRef.current = {
-      x: event.clientX - highlightBounds.left,
-      y: event.clientY - highlightBounds.top,
-      radius: characterWidth * ASCII_HIGHLIGHT_RADIUS,
+      column: Math.floor(x / characterWidth),
+      row: Math.floor(y / lineHeight),
     };
 
     if (pointerFrameRef.current === null) {
@@ -243,14 +244,22 @@ const Home = () => {
         const pointer = pendingPointerRef.current;
         if (!pointer || !highlightRef.current) return;
 
-        highlightRef.current.style.setProperty('--ascii-pointer-x', `${pointer.x}px`);
-        highlightRef.current.style.setProperty('--ascii-pointer-y', `${pointer.y}px`);
-        highlightRef.current.style.setProperty('--ascii-radius', `${pointer.radius}px`);
+        if (
+          asciiPointerCellRef.current?.column !== pointer.column ||
+          asciiPointerCellRef.current?.row !== pointer.row
+        ) {
+          asciiPointerCellRef.current = pointer;
+          setAsciiPointerCell(pointer);
+        }
       });
     }
   };
 
-  const handleTitlePointerLeave = () => updateAsciiHighlight(false);
+  const handleTitlePointerLeave = () => {
+    updateAsciiHighlight(false);
+    asciiPointerCellRef.current = null;
+    setAsciiPointerCell(null);
+  };
 
   return (
     <>
@@ -314,7 +323,35 @@ const Home = () => {
               className="ascii-title-art"
               style={{ fontSize: `${artFontSizes[artIndex] || 8}px` }}
             >
-              {isArtLoaded ? visibleArt : ''}
+              {isArtLoaded
+                ? frameLines.map((line, row) => (
+                  <React.Fragment key={row}>
+                    {Array.from(line.slice(0, visibleColumns), (character, column) => {
+                      const distance = asciiPointerCell
+                        ? Math.hypot(
+                          column - asciiPointerCell.column,
+                          row - asciiPointerCell.row
+                        )
+                        : Infinity;
+                      const isHighlighted = character !== ' ' &&
+                        distance < ASCII_HIGHLIGHT_RADIUS;
+
+                      return (
+                        <span
+                          key={column}
+                          className={`ascii-highlight-character${isHighlighted ? ' is-highlighted' : ''}`}
+                          style={isHighlighted
+                            ? { opacity: 0.25 + 0.75 * (1 - distance / ASCII_HIGHLIGHT_RADIUS) }
+                            : undefined}
+                        >
+                          {character}
+                        </span>
+                      );
+                    })}
+                    {row < frameLines.length - 1 ? <br /> : null}
+                  </React.Fragment>
+                ))
+                : ''}
             </span>
           </pre>
           <pre className="ascii-title ascii-title-mobile" aria-hidden="true">

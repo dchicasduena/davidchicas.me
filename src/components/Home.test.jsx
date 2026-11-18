@@ -101,13 +101,16 @@ it('highlights ASCII characters within a nine-character pointer radius', async (
 
     await waitFor(() => {
       expect(highlightLayer).toHaveClass('is-active');
-      expect(Number.parseFloat(highlightLayer.style.getPropertyValue('--ascii-radius'))).toBeGreaterThan(0);
+      expect(highlightLayer.querySelectorAll('.ascii-highlight-character.is-highlighted').length)
+        .toBeGreaterThan(0);
     });
 
-    const firstPointerX = highlightLayer.style.getPropertyValue('--ascii-pointer-x');
+    const firstHighlightedCount =
+      highlightLayer.querySelectorAll('.ascii-highlight-character.is-highlighted').length;
     fireEvent.pointerMove(title, { pointerType: 'mouse', clientX: 32, clientY: 22 });
     await waitFor(() => {
-      expect(highlightLayer.style.getPropertyValue('--ascii-pointer-x')).not.toBe(firstPointerX);
+      expect(highlightLayer.querySelectorAll('.ascii-highlight-character.is-highlighted').length)
+        .not.toBe(firstHighlightedCount);
     });
 
     fireEvent.pointerLeave(title);
