@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 const ART_PATH = '/assets/ascii-art/david-chicas.txt';
 const MOBILE_ART_PATH = '/assets/ascii-art/david-chicas-mobile.txt';
 const FALLBACK_ART = 'DAVID CHICAS';
+const ASCII_HIGHLIGHT_RADIUS = 6;
 
 const getPrefersReducedMotion = () =>
   window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
@@ -33,15 +34,36 @@ const Home = () => {
   const [animationPhase, setAnimationPhase] = useState('typing');
   const [artFontSizes, setArtFontSizes] = useState([8]);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(getPrefersReducedMotion);
+  const [isAsciiHighlightActive, setIsAsciiHighlightActive] = useState(false);
   const titleRef = useRef(null);
+  const artRef = useRef(null);
+  const asciiHighlightActiveRef = useRef(false);
+  const measureContextRef = useRef(null);
+  const pointerFrameRef = useRef(null);
+  const pendingPointerRef = useRef(null);
+
+  const updateAsciiHighlight = (active) => {
+    if (asciiHighlightActiveRef.current === active) return;
+    asciiHighlightActiveRef.current = active;
+    setIsAsciiHighlightActive(active);
+  };
 
   useEffect(() => {
     const mediaQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
     if (!mediaQuery) return undefined;
 
-    const updatePreference = (event) => setPrefersReducedMotion(event.matches);
+    const updatePreference = (event) => {
+      setPrefersReducedMotion(event.matches);
+      if (event.matches) updateAsciiHighlight(false);
+    };
     mediaQuery.addEventListener?.('change', updatePreference);
     return () => mediaQuery.removeEventListener?.('change', updatePreference);
+  }, []);
+
+  useEffect(() => () => {
+    if (pointerFrameRef.current !== null) {
+      window.cancelAnimationFrame(pointerFrameRef.current);
+    }
   }, []);
 
   useEffect(() => {
@@ -165,6 +187,59 @@ const Home = () => {
   const frameLines = (artFrames[artIndex] || '').split('\n');
   const visibleArt = frameLines.map((line) => line.slice(0, visibleColumns)).join('\n');
 
+  const handleTitlePointerMove = (event) => {
+    if (prefersReducedMotion || event.pointerType === 'touch' || !artRef.current) return;
+
+    const art = artRef.current;
+    const bounds = art.getBoundingClientRect();
+    const x = event.clientX - bounds.left;
+    const y = event.clientY - bounds.top;
+
+    if (x < 0 || y < 0 || x >= bounds.width || y >= bounds.height) {
+      updateAsciiHighlight(false);
+      return;
+    }
+
+    const styles = window.getComputedStyle(art);
+    const fontSize = Number.parseFloat(styles.fontSize);
+    if (!measureContextRef.current) {
+      measureContextRef.current = document.createElement('canvas').getContext('2d');
+    }
+
+    const context = measureContextRef.current;
+    if (context) context.font = `${styles.fontWeight} ${fontSize}px ${styles.fontFamily}`;
+    const characterWidth = context?.measureText('M').width || fontSize * 0.6;
+    const computedLineHeight = Number.parseFloat(styles.lineHeight);
+    const lineHeight = Number.isFinite(computedLineHeight)
+      ? styles.lineHeight.endsWith('px')
+        ? computedLineHeight
+        : fontSize * computedLineHeight
+      : fontSize * 1.08;
+
+    updateAsciiHighlight(true);
+    pendingPointerRef.current = {
+      x,
+      y,
+      radiusX: characterWidth * ASCII_HIGHLIGHT_RADIUS,
+      radiusY: lineHeight * ASCII_HIGHLIGHT_RADIUS,
+    };
+
+    if (pointerFrameRef.current === null) {
+      pointerFrameRef.current = window.requestAnimationFrame(() => {
+        pointerFrameRef.current = null;
+        const pointer = pendingPointerRef.current;
+        if (!pointer || !artRef.current) return;
+
+        artRef.current.style.setProperty('--ascii-pointer-x', `${pointer.x}px`);
+        artRef.current.style.setProperty('--ascii-pointer-y', `${pointer.y}px`);
+        artRef.current.style.setProperty('--ascii-radius-x', `${pointer.radiusX}px`);
+        artRef.current.style.setProperty('--ascii-radius-y', `${pointer.radiusY}px`);
+      });
+    }
+  };
+
+  const handleTitlePointerLeave = () => updateAsciiHighlight(false);
+
   return (
     <>
       <header className="masthead" id="home">
@@ -209,9 +284,20 @@ const Home = () => {
           role="heading"
           aria-level="1"
           aria-label="David Chicas"
+          onPointerMove={handleTitlePointerMove}
+          onPointerLeave={handleTitlePointerLeave}
         >
           <pre className="ascii-title" aria-hidden="true">
-            <span style={{ fontSize: `${artFontSizes[artIndex] || 8}px` }}>{visibleArt}</span>
+            <span className="ascii-title-art" style={{ fontSize: `${artFontSizes[artIndex] || 8}px` }}>{visibleArt}</span>
+          </pre>
+          <pre className={`ascii-title ascii-title-highlight${isAsciiHighlightActive ? ' is-active' : ''}`} aria-hidden="true">
+            <span
+              ref={artRef}
+              className="ascii-title-art"
+              style={{ fontSize: `${artFontSizes[artIndex] || 8}px` }}
+            >
+              {visibleArt}
+            </span>
           </pre>
           <pre className="ascii-title ascii-title-mobile" aria-hidden="true">
             {mobileArt}

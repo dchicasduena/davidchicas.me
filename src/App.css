@@ -171,6 +171,44 @@
   cursor: url('./assets/cursors/Alternate Select Light.cur'), pointer;
 }
 
+.ascii-title-art {
+  display: block;
+  width: max-content;
+}
+
+.ascii-title-highlight {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 140ms var(--ease-out);
+}
+
+.ascii-title-highlight > span {
+  color: transparent;
+  text-shadow: none;
+  background: var(--purple);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  mask-image: radial-gradient(
+    ellipse var(--ascii-radius-x, 0) var(--ascii-radius-y, 0)
+    at var(--ascii-pointer-x, 0) var(--ascii-pointer-y, 0),
+    #000 0%,
+    #000 88%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse var(--ascii-radius-x, 0) var(--ascii-radius-y, 0)
+    at var(--ascii-pointer-x, 0) var(--ascii-pointer-y, 0),
+    #000 0%,
+    #000 88%,
+    transparent 100%
+  );
+}
+
+.ascii-title-highlight.is-active {
+  opacity: 1;
+}
+
 .ascii-title-mobile {
   display: none;
 }
@@ -737,12 +775,28 @@
     text-align: center;
   }
 
+  .ascii-title-highlight {
+    display: none;
+  }
+
   .terminal-mobile-note {
     display: block;
   }
 
   .text-section {
     padding: 16px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ascii-title-highlight {
+    display: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .ascii-title-highlight {
+    display: none;
   }
 }
 
