@@ -3,6 +3,52 @@ import React from 'react';
 import { expect, it, vi } from 'vitest';
 import Home from './Home';
 
+it('does not show the fallback name while the ASCII art is loading', async () => {
+  const originalMatchMedia = window.matchMedia;
+  let resolveDesktopArt;
+  let resolveMobileArt;
+  const desktopArt = new Promise((resolve) => {
+    resolveDesktopArt = resolve;
+  });
+  const mobileArt = new Promise((resolve) => {
+    resolveMobileArt = resolve;
+  });
+  vi.stubGlobal('fetch', vi.fn((path) => (
+    path.includes('-mobile') ? mobileArt : desktopArt
+  )));
+  window.matchMedia = vi.fn().mockReturnValue({
+    matches: true,
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+  });
+
+  try {
+    const { container } = render(<Home />);
+    const desktopTitle = container.querySelector('.ascii-title-art');
+    const mobileTitle = container.querySelector('.ascii-title-mobile');
+
+    expect(desktopTitle.textContent).toBe('');
+    expect(mobileTitle.textContent).toBe('');
+
+    resolveDesktopArt({
+      ok: true,
+      text: () => Promise.resolve('ASCII ART'),
+    });
+    resolveMobileArt({
+      ok: true,
+      text: () => Promise.resolve('MOBILE ASCII'),
+    });
+
+    await waitFor(() => {
+      expect(desktopTitle.textContent).toBe('ASCII ART');
+      expect(mobileTitle.textContent).toBe('MOBILE ASCII');
+    });
+  } finally {
+    window.matchMedia = originalMatchMedia;
+    vi.unstubAllGlobals();
+  }
+});
+
 it('keeps the ASCII title still when reduced motion is requested', async () => {
   const originalMatchMedia = window.matchMedia;
   window.matchMedia = vi.fn().mockReturnValue({

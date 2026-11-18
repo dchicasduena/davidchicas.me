@@ -29,6 +29,7 @@ const shuffleArtFrames = (frames, previousFrame) => {
 const Home = () => {
   const [artFrames, setArtFrames] = useState([FALLBACK_ART]);
   const [mobileArt, setMobileArt] = useState(FALLBACK_ART);
+  const [isArtLoaded, setIsArtLoaded] = useState(false);
   const [artIndex, setArtIndex] = useState(0);
   const [visibleColumns, setVisibleColumns] = useState(0);
   const [animationPhase, setAnimationPhase] = useState('typing');
@@ -99,7 +100,10 @@ const Home = () => {
 
         if (mobileContents) setMobileArt(mobileContents.replace(/^\r?\n|\r?\n$/g, ''));
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => {
+        if (!cancelled) setIsArtLoaded(true);
+      });
 
     return () => {
       cancelled = true;
@@ -296,7 +300,9 @@ const Home = () => {
           onPointerLeave={handleTitlePointerLeave}
         >
           <pre className="ascii-title" aria-hidden="true">
-            <span className="ascii-title-art" style={{ fontSize: `${artFontSizes[artIndex] || 8}px` }}>{visibleArt}</span>
+            <span className="ascii-title-art" style={{ fontSize: `${artFontSizes[artIndex] || 8}px` }}>
+              {isArtLoaded ? visibleArt : ''}
+            </span>
           </pre>
           <pre
             ref={highlightRef}
@@ -308,11 +314,11 @@ const Home = () => {
               className="ascii-title-art"
               style={{ fontSize: `${artFontSizes[artIndex] || 8}px` }}
             >
-              {visibleArt}
+              {isArtLoaded ? visibleArt : ''}
             </span>
           </pre>
           <pre className="ascii-title ascii-title-mobile" aria-hidden="true">
-            {mobileArt}
+            {isArtLoaded ? mobileArt : ''}
           </pre>
         </div>
         <p className="intro-detail">
