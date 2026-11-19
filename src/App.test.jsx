@@ -18,7 +18,7 @@ test('renders the text-first portfolio and section links', () => {
   expect(screen.getByRole('heading', { name: /^about$/i })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: /projects/i })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: /contact/i })).toBeInTheDocument();
-  expect(screen.getAllByText('>', { selector: '.project-number' })).toHaveLength(7);
+  expect(screen.getAllByText('>', { selector: '.project-number' })).toHaveLength(6);
   const background = container.querySelector('[data-dither-fallback]')?.parentElement;
   expect(background).toHaveClass('fixed', 'inset-0', 'z-0');
   expect(background).toHaveAttribute('aria-hidden', 'true');

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ButtonLink } from './ui/button';
 import { DitherText } from './dithercn/dither-text';
+import { DissolveText } from './dithercn/dissolve-text';
 
 const Home = () => {
   return (
@@ -62,10 +63,20 @@ const Home = () => {
         >
           David Chicas
         </DitherText>
-        <p className="intro-detail">
-          <span className="project-number">&gt;</span>{' '}Software developer in Newfoundland, Canada. Here are some of my projects, some information about me,
-          and a couple ways to get in touch{' '}
-        </p>
+        <DissolveText
+          as="p"
+          by="char"
+          matrix="bayer8"
+          cell={2}
+          delay={200}
+          stagger={45}
+          direction="random"
+          speed={1.75}
+          className="intro-detail"
+        >
+          Software developer in Newfoundland, Canada. Here are some of my
+          projects, some information about me, and a couple ways to get in touch
+        </DissolveText>
       </section>
     </>
   );

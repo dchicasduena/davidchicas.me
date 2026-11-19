@@ -71,7 +71,7 @@ const Footer = () => {
             type="text"
             value={input}
             onChange={(event) => setInput(event.target.value)}
-            placeholder="Enter a command..."
+            placeholder="Enter a command"
             autoComplete="off"
             autoCapitalize="off"
             spellCheck="false"
@@ -89,7 +89,7 @@ const Footer = () => {
         <div className="assistant-log" role="log" aria-live="polite" ref={logRef}>
           {entries.length === 0 ? (
             <p className="assistant-hint">
-              I can help you explore my portfolio. Try <code>help</code>, <code>projects</code>,{' '}
+              You can use commands to explore my site. Try <code>help</code>, <code>projects</code>,{' '}
               <code>contact</code>, or <code>resume</code>.
             </p>
           ) : entries.map((entry) => (

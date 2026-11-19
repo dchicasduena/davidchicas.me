@@ -92,7 +92,7 @@
 }
 
 .introduction {
-  padding: 0px 0 34px;
+  padding: 20px 0 34px;
 }
 
 .eyebrow {
@@ -110,15 +110,6 @@
   letter-spacing: -0.06em;
   line-height: 1;
   white-space: nowrap;
-}
-
-.intro-detail::after {
-  display: inline-block;
-  color: var(--text);
-  content: ' _';
-  text-shadow: 0 0 8px rgba(252, 252, 250, 0.55);
-  animation: crt-cursor-blink 1.1s steps(2, start) infinite;
-  margin-left: 2px;
 }
 
 @keyframes crt-cursor-blink {
@@ -617,7 +608,7 @@
   }
 
   .introduction {
-    padding: 0px 0 26px;
+    padding: 20px 0 26px;
   }
 
   .assistant-surface {
