@@ -104,7 +104,6 @@
   width: fit-content;
   max-width: 100%;
   margin: 0 0 12px;
-  color: var(--text);
   font-size: clamp(42px, 8vw, 88px);
   font-weight: 900;
   letter-spacing: -0.06em;
@@ -468,6 +467,7 @@
   width: 40px;
   height: 40px;
   flex-shrink: 0;
+  cursor: url('./assets/cursors/Alternate Select Light.cur'), pointer;
   border-color: var(--text);
   background-color: var(--text);
   color: var(--night);

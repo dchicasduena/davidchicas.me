@@ -17,7 +17,7 @@ describe('portfolio assistant', () => {
 
     expect(screen.getByRole('region', { name: 'Portfolio assistant' })).toBeInTheDocument();
     expect(screen.getByRole('log')).toHaveTextContent(
-      'I can help you explore my portfolio. Try help, projects, contact, or resume.',
+      'You can use commands to explore my site. Try help, projects, contact, or resume.',
     );
     expect(screen.queryByRole('link', { name: /open terminal/i })).not.toBeInTheDocument();
 

@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import {
   bloomFilter,
@@ -188,6 +188,7 @@ const showQueued = async (swapper) => {
   frame.el.style.backgroundSize = frame.size;
   frame.el.style.backgroundPosition = frame.position;
   frame.root.dataset.state = "ready";
+  frame.onReady();
   // Not awaited: this call finishes once it has handed off, so a long run
   // of slow decodes doesn't build a chain of pending promises.
   showQueued(swapper);
@@ -245,6 +246,7 @@ export const DitherText = (props) => {
   const custom = palette !== undefined;
 
   const ref = useRef(null);
+  const [hasFrame, setHasFrame] = useState(false);
   const setRef = useCallback((node) => {
     ref.current = node;
   }, []);
@@ -314,6 +316,7 @@ export const DitherText = (props) => {
       const swapper = swapperRef.current;
       swapper.queued = {
         el,
+        onReady: () => setHasFrame(true),
         position: `${bleedX - leadCols * size}px ${bleedY - leadRows * size}px`,
         root,
         size: `${cols * size}px ${rows * size}px`,
@@ -369,7 +372,7 @@ export const DitherText = (props) => {
   // Until the dither is painted, a CSS mask at the average tone. It sits on
   // the paint span too, since a mask also stops at the border box.
   const paintStyle =
-    resolved || fill === "solid"
+    hasFrame || fill === "solid"
       ? undefined
       : ditherMaskStyle((from + to) / 2, { matrix });
 

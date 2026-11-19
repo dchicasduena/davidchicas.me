@@ -71,7 +71,7 @@ it('renders David Chicas as the dithered, accessible page heading', () => {
   expect(container.querySelector('.ascii-title')).not.toBeInTheDocument();
 });
 
-it('reveals the intro description as words without terminal markers', () => {
+it('reveals the intro description by character without terminal markers', () => {
   render(<Home />);
   const description = screen.getByText(/Software developer in Newfoundland, Canada/);
 
@@ -82,7 +82,7 @@ it('reveals the intro description as words without terminal markers', () => {
   expect(description).toHaveAttribute('data-cell', '2');
   expect(description).toHaveAttribute('data-delay', '200');
   expect(description).toHaveAttribute('data-direction', 'random');
-  expect(description).toHaveAttribute('data-speed', '1.5');
+  expect(description).toHaveAttribute('data-speed', '1.75');
   expect(description).toHaveAttribute('data-stagger', '45');
   expect(description.querySelector('.project-number')).toBeNull();
   expect(description).not.toHaveTextContent('>');
