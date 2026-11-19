@@ -8,6 +8,7 @@ const getPrefersReducedMotion = () =>
 const NotFoundArt = ({ art }) => {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(getPrefersReducedMotion);
   const [pointerCell, setPointerCell] = useState(null);
+  const [cellAspectRatio, setCellAspectRatio] = useState(1);
   const [isHighlightActive, setIsHighlightActive] = useState(false);
   const artRef = useRef(null);
   const pointerCellRef = useRef(null);
@@ -55,6 +56,11 @@ const NotFoundArt = ({ art }) => {
     const context = measureContextRef.current;
     if (context) context.font = `${styles.fontWeight} ${fontSize}px ${styles.fontFamily}`;
     const characterWidth = context?.measureText('M').width || fontSize * 0.6;
+    const aspectRatio = lineHeight / characterWidth;
+
+    setCellAspectRatio((current) => (
+      Math.abs(current - aspectRatio) < 0.001 ? current : aspectRatio
+    ));
 
     setIsHighlightActive(true);
     pendingPointerRef.current = {
@@ -104,7 +110,10 @@ const NotFoundArt = ({ art }) => {
           <React.Fragment key={row}>
             {Array.from(line, (character, column) => {
               const distance = pointerCell
-                ? Math.hypot(column - pointerCell.column, row - pointerCell.row)
+                ? Math.hypot(
+                  column - pointerCell.column,
+                  (row - pointerCell.row) * cellAspectRatio
+                )
                 : Infinity;
               const isHighlighted = character !== ' ' && distance < HIGHLIGHT_RADIUS;
 

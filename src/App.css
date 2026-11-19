@@ -453,6 +453,8 @@
 }
 
 .footer-icon {
+  position: relative;
+  left: max(4px, calc(50vw - 426px));
   grid-column: 3;
   justify-self: end;
   padding: 8px 16px 8px 8px;
@@ -852,6 +854,10 @@
   .App {
     width: min(100% - 32px, 820px);
     padding-top: 18px;
+  }
+
+  .footer-icon {
+    left: 0;
   }
 
   .social-links {
