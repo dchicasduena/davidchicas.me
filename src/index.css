@@ -2,15 +2,17 @@
 @import 'tailwindcss/utilities.css' layer(utilities);
 @import 'shadcn/tailwind.css';
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  --background: #161616;
+  --background: #141414;
   --foreground: #e9e9e9;
   --card: #1c1c1c;
   --card-foreground: #e9e9e9;
   --popover: #1c1c1c;
   --popover-foreground: #e9e9e9;
   --primary: #7386d5;
-  --primary-foreground: #161616;
+  --primary-foreground: #141414;
   --secondary: #2b2b2b;
   --secondary-foreground: #e9e9e9;
   --muted: #2b2b2b;
@@ -48,11 +50,20 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --font-mono: 'Inconsolata', Consolas, Monaco, 'Courier New', monospace;
+  --color-dither-ink: var(--dither-ink);
+  --color-dither-paper: var(--dither-paper);
+  --color-dither-blue: var(--dither-color-blue);
+  --color-dither-purple: var(--dither-color-purple);
+  --color-dither-green: var(--dither-color-green);
+  --color-dither-pink: var(--dither-color-pink);
+  --color-dither-orange: var(--dither-color-orange);
+  --color-dither-red: var(--dither-color-red);
+  --color-dither-grey: var(--dither-color-grey);
 }
 
 :root {
   color-scheme: dark;
-  --night: #161616;
+  --night: #141414;
   --text: #e9e9e9;
   --purple: #7386d5;
   --font-heading: 24px;
@@ -84,27 +95,7 @@ body {
   font-size: var(--font-copy);
   font-weight: 400;
   line-height: 1.65;
-  text-shadow: 0 0 5px rgba(252, 252, 250, 0.14);
   -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  position: fixed;
-  z-index: 12;
-  inset: 0;
-  background-image:
-    url('./assets/img/dust-texture.png'),
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent 2px,
-      rgba(252, 252, 250, 0.08) 3px
-    );
-  background-size: 400px 300px, auto;
-  opacity: 0.08;
-  mix-blend-mode: screen;
-  content: '';
-  pointer-events: none;
 }
 
 a {
@@ -144,5 +135,34 @@ button:focus-visible {
   .intro-detail::after,
   .terminal-input-cursor {
     animation: none;
+  }
+}
+
+@layer base {
+  :root {
+    --dither-ink: var(--primary);
+    --dither-paper: var(--background);
+    --dither-cell: 3px;
+    --dither-color-blue: oklch(0.56 0.18 248);
+    --dither-color-purple: oklch(0.53 0.22 302);
+    --dither-color-green: oklch(0.58 0.15 152);
+    --dither-color-pink: oklch(0.58 0.21 355);
+    --dither-color-orange: oklch(0.64 0.17 52);
+    --dither-color-red: oklch(0.55 0.21 27);
+    --dither-color-grey: oklch(0.55 0 0);
+    --dither-bloom: 0.6;
+  }
+  .dark {
+    --dither-ink: var(--primary);
+    --dither-paper: var(--background);
+    --dither-cell: 3px;
+    --dither-color-blue: oklch(0.72 0.14 240);
+    --dither-color-purple: oklch(0.7 0.18 304);
+    --dither-color-green: oklch(0.78 0.17 152);
+    --dither-color-pink: oklch(0.74 0.17 354);
+    --dither-color-orange: oklch(0.79 0.15 62);
+    --dither-color-red: oklch(0.68 0.2 25);
+    --dither-color-grey: oklch(0.66 0 0);
+    --dither-bloom: 1;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import './App.css';
 
@@ -7,8 +7,9 @@ import Home from './components/Home';
 import AboutMe from './components/AboutMe';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
-import NotFoundArt from './components/NotFoundArt';
 import { ButtonLink } from './components/ui/button';
+import { NotFound } from './components/dithercn/not-found';
+import { MeshGradient } from './components/dithercn/mesh-gradient';
 
 const legacyProjectRoutes = {
   '/tfmm': 'project-tfmm',
@@ -17,48 +18,10 @@ const legacyProjectRoutes = {
   '/moreprojects': 'projects',
 };
 
-const notFoundArt = String.raw` __    __   ______   __    __ 
-|  \  |  \ /      \ |  \  |  \
-| $$  | $$|  $$$$$$\| $$  | $$
-| $$__| $$| $$$\| $$| $$__| $$
-| $$    $$| $$$$\ $$| $$    $$
- \$$$$$$$$| $$\$$\$$ \$$$$$$$$
-      | $$| $$_\$$$$      | $$
-      | $$ \$$  \$$$      | $$
-       \$$  \$$$$$$        \$$
-                              `;
-
 const Portfolio = () => {
   const { pathname } = useLocation();
   const normalizedPath = pathname.replace(/\/+$/, '').toLowerCase();
   const isPortfolioPath = normalizedPath === '' || Object.prototype.hasOwnProperty.call(legacyProjectRoutes, normalizedPath);
-
-  useEffect(() => {
-    const root = document.documentElement;
-    let frameId = null;
-    let pointerX = window.innerWidth / 2;
-    let pointerY = window.innerHeight / 2;
-
-    const updatePointer = (event) => {
-      pointerX = event.clientX;
-      pointerY = event.clientY;
-
-      if (frameId !== null) return;
-
-      frameId = window.requestAnimationFrame(() => {
-        root.style.setProperty('--pointer-x', `${pointerX}px`);
-        root.style.setProperty('--pointer-y', `${pointerY}px`);
-        frameId = null;
-      });
-    };
-
-    window.addEventListener('pointermove', updatePointer, { passive: true });
-
-    return () => {
-      window.removeEventListener('pointermove', updatePointer);
-      if (frameId !== null) window.cancelAnimationFrame(frameId);
-    };
-  }, []);
 
   useLayoutEffect(() => {
     const history = window.history;
@@ -86,17 +49,31 @@ const Portfolio = () => {
   if (!isPortfolioPath) {
     return (
       <>
-        <div className="crt-screen-effects" aria-hidden="true" />
         <main className="App not-found-content">
-          <NotFoundArt art={notFoundArt} />
-          <h1 className="not-found-title">
-            Sorry something went wrong <span className="not-found-cursor" aria-hidden="true">_</span>
-          </h1>
-          <p className="project-links">
-            <ButtonLink className="legacy-link" href="/">
-              GO BACK
-            </ButtonLink>
-          </p>
+          <NotFound
+            title={(
+              <>
+                Sorry something went wrong
+                <span className="not-found-cursor" aria-hidden="true">_</span>
+              </>
+            )}
+            description={null}
+            detail={`Requested path: ${pathname}`}
+            titleAs="h1"
+            color="--dither-ink"
+            fill="gradient"
+            bloom="high"
+            depth={6}
+            cell={3}
+            actions={(
+              <p className="project-links">
+                <ButtonLink className="legacy-link" href="/">
+                  GO BACK
+                </ButtonLink>
+              </p>
+            )}
+            className="w-full py-0"
+          />
         </main>
       </>
     );
@@ -104,7 +81,6 @@ const Portfolio = () => {
 
   return (
     <>
-      <div className="crt-screen-effects" aria-hidden="true" />
       <div className="App">
         <Home />
         <main id="main" className="terminal-content">
@@ -120,7 +96,17 @@ const Portfolio = () => {
 
 const App = () => (
   <Router>
-    <Portfolio />
+    <>
+      <MeshGradient
+        blobs={4}
+        size={0.3}
+        palette={['#0A0A0A', '#141414', '#141414', '#141414', '#141414']}
+        matrix="bayer8"
+        cell={2}
+        className="fixed inset-0 z-0"
+      />
+      <Portfolio />
+    </>
   </Router>
 );
 
