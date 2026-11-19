@@ -122,13 +122,6 @@ const FALLBACK_MASKS = {
 const clamp = (value, min, max) =>
   Math.min(max, Math.max(min, value));
 
-/**
- * A slow, folding noise texture drawn as a dither, for a quiet surface
- * behind content. `variant` changes its shape, `mask` clears the area
- * where your text sits. Decorative and full-bleed: size it with
- * `className`, usually `absolute inset-0`. Set `color`, `highlight` and
- * `background`, or pass `palette` (paper to brightest) to take over.
- */
 export const NoiseField = ({
   color = "--dither-ink",
   highlight,

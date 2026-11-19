@@ -58,7 +58,7 @@ const Portfolio = () => {
               </>
             )}
             description={null}
-            detail={`Requested path: ${pathname}`}
+            detail={null}
             titleAs="h1"
             color="--dither-ink"
             fill="gradient"
@@ -83,7 +83,7 @@ const Portfolio = () => {
     <>
       <div className="App">
         <Home />
-        <main id="main" className="terminal-content">
+        <main id="main">
           <AboutMe />
           <Projects />
           <Contact />

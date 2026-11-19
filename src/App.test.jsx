@@ -15,7 +15,7 @@ test('renders the text-first portfolio and section links', () => {
 
   expect(screen.getByRole('heading', { name: /david chicas/i })).toBeInTheDocument();
   expect(screen.getByRole('link', { name: /projects/i })).toHaveAttribute('href', '#projects');
-  expect(screen.getByRole('heading', { name: /about/i })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: /^about$/i })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: /projects/i })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: /contact/i })).toBeInTheDocument();
   expect(screen.getAllByText('>', { selector: '.project-number' })).toHaveLength(7);

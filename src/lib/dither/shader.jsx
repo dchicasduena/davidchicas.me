@@ -476,7 +476,7 @@ const clampLevels = (levels) =>
   Math.min(256, Math.max(2, Math.round(levels)));
 
 const CANVAS_CLASS =
-  "absolute top-0 left-0 block opacity-100 transition-opacity duration-700 ease-out [image-rendering:pixelated] group-data-[state=fallback]/dither:opacity-0 group-data-[state=fallback]/dither:duration-0 motion-reduce:transition-none";
+  "absolute top-0 left-0 block opacity-100 transition-opacity duration-700 ease-out [image-rendering:pixelated] group-data-[state=fallback]/dither:opacity-0 motion-reduce:transition-none";
 
 /**
  * A dithered full-bleed canvas driven by a GLSL `field`. Renders one pixel
@@ -715,7 +715,7 @@ export const DitherShader = ({
     >
       <div
         data-dither-fallback
-        className="absolute inset-0 opacity-0 transition-opacity delay-700 duration-0 group-data-[state=fallback]/dither:opacity-100 group-data-[state=fallback]/dither:delay-0"
+        className="absolute inset-0 opacity-0 transition-opacity duration-700 ease-out group-data-[state=fallback]/dither:opacity-100"
       >
         {fallback ?? (
           <div

@@ -9,21 +9,8 @@ import {
 } from "@/lib/dither";
 import { cn } from "@/lib/utils";
 
-/*
- * The code is set in the page's own font, rasterised once onto a grid of
- * cells, and turned into block letters: each face cell gets a tone that
- * is densest at the top of the glyphs and thins towards the baseline, and
- * the cells behind it, down and to the right, become an extruded side in
- * a sparse dither. Every frame the tones are thresholded with the Bayer
- * matrix and painted into a canvas one pixel per cell. On mount the tones
- * rise from nothing, so the digits print in level by level; after that a
- * band of light crosses the face every few seconds. Reduced motion shows
- * the finished letters, still.
- */
-
 const PRINT_SECONDS = 1.1;
 const SWEEP_SECONDS = 5.5;
-// Where the still frame sits: after the print, between two sweeps.
 const STILL_TIME = PRINT_SECONDS + SWEEP_SECONDS * 0.7;
 
 const rasterise = (
@@ -44,7 +31,6 @@ const rasterise = (
     return null;
   }
   const pad = extrude + 1;
-  // Fit the code into the grid, leaving room for the extruded side.
   context.font = `800 100px ${font}`;
   const metrics = context.measureText(code);
   const ascent = metrics.actualBoundingBoxAscent;
@@ -89,7 +75,6 @@ const rasterise = (
       }
     }
   }
-  // The side: cells behind the face along the diagonal, nearest first.
   for (let step = 1; step <= extrude; step += 1) {
     for (let y = rows - 1; y >= step; y -= 1) {
       for (let x = cols - 1; x >= step; x -= 1) {
@@ -112,7 +97,6 @@ const TEXTURE = {
 
 const clamp01 = (value) => Math.min(1, Math.max(0, value));
 
-/** The light band's position across the face at `time`, or null between sweeps. */
 const sweepAt = (time) => {
   const phase = (time - PRINT_SECONDS) / SWEEP_SECONDS;
   if (phase < 0) {
@@ -192,7 +176,6 @@ const paint = ({
   }
 };
 
-/** Width of the root in CSS pixels, kept up to date. */
 const useWidth = (ref) => {
   const [width, setWidth] = useState(0);
   useEffect(() => {
@@ -209,7 +192,6 @@ const useWidth = (ref) => {
   return width;
 };
 
-/** Bumps once the page's fonts have loaded, so the code is set in the right face. */
 const useFontsReady = () => {
   const [ready, setReady] = useState(0);
   useEffect(() => {
@@ -270,7 +252,6 @@ const Numeral = ({
     [extrude, fill, ink]
   );
 
-  // Rasterise the code whenever the grid, the text or the font changes.
   useEffect(() => {
     const root = rootRef.current;
     if (!root || width === 0) {
@@ -312,11 +293,6 @@ const Numeral = ({
   );
 };
 
-/**
- * A complete 404 block: big dithered block digits with an extruded side,
- * a heading, a sentence, an optional mono detail and your actions. Drop it
- * into `app/not-found.tsx`.
- */
 export const NotFound = ({
   code = "404",
   title = "Page not found",

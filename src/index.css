@@ -132,8 +132,7 @@ button:focus-visible {
     scroll-behavior: auto;
   }
 
-  .intro-detail::after,
-  .terminal-input-cursor {
+  .intro-detail::after {
     animation: none;
   }
 }

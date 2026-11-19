@@ -39,7 +39,6 @@ float field(vec2 uv, vec2 res, float t) {
 }
 `;
 
-/** The blobs as blurred CSS radial gradients, shown without WebGL. */
 const fallbackImage = (palette, blobs) => {
   const spots = [[20, 25], [78, 30], [65, 80], [25, 75], [50, 50]];
   return spots
@@ -51,11 +50,6 @@ const fallbackImage = (palette, blobs) => {
     .join(", ");
 };
 
-/**
- * Three to five colour blobs that drift and melt into each other, drawn
- * as a dither. Decorative and full-bleed: size it with `className`,
- * usually `absolute inset-0`.
- */
 export const MeshGradient = ({
   blobs = 4,
   size = 0.6,
